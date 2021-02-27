@@ -1,0 +1,20 @@
+package commands;
+
+public enum TypeOfCommands {
+    HELP,
+    INFO,
+    SHOW,
+    ADD,
+    UPDATEID,
+    REMOVEBYID,
+    CLEAR,
+    SAVE,
+    EXECUTESCRIPT,
+    EXIT,
+    REMOVEHEAD,
+    ADDIFMAX,
+    ADDIFMIN,
+    AVERAGEOFMETERSABOVESEALEVEL,
+    GROUPCOUNTINGBYMETERSABOVESEALEVEL,
+    PRINTASCENDING;
+}
