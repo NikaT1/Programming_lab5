@@ -2,8 +2,7 @@ package commands;
 
 import collection.City;
 import collection.CreationPriorityQueue;
-import collection.InputAndOutput;
-
+import IOutils.InputAndOutput;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 

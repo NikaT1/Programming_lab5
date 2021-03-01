@@ -1,6 +1,6 @@
 package commands;
 import collection.CreationPriorityQueue;
-import collection.InputAndOutput;
+import IOutils.InputAndOutput;
 
 public class CommandClear extends Commands {
     public CommandClear() {

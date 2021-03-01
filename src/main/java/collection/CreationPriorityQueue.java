@@ -27,7 +27,7 @@ public class CreationPriorityQueue {
         }
         return millis;
     }
-    private PriorityQueue<City> priorityQueue = new PriorityQueue<City>(10, new Comparator<City>(){
+    private PriorityQueue<City> priorityQueue = new PriorityQueue<>(10, new Comparator<>(){
         public int compare(City c1, City c2) {
             return c2.getArea() - c1.getArea();
         }

@@ -1,5 +1,9 @@
-package collection;
+package IOutils;
 
+import collection.City;
+import collection.Climate;
+import collection.Coordinates;
+import collection.Human;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -8,15 +12,29 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class InputAndOutput {
-    private Scanner input;
+    private final Scanner scanner;
     private String argument;
     private boolean printMessages;
-    public InputAndOutput(Scanner input, boolean printMessages) {
-        this.input = input;
+    public InputAndOutput(Scanner scanner, boolean printMessages) {
+        this.scanner = scanner;
+        this.printMessages = printMessages;
+        argument = null;
+    }
+
+    public void setPrintMessages(boolean printMessages) {
         this.printMessages = printMessages;
     }
+
+    public void deleteArgument(){
+        argument = null;
+    }
+
     public String getArgument() {
         return argument;
+    }
+
+    public Scanner getScanner() {
+        return scanner;
     }
 
     public void setArgument(String argument) {
@@ -27,22 +45,22 @@ public class InputAndOutput {
     public String readField(String message){
         String s;
         if (printMessages) System.out.println(message);
-        s = input.nextLine();
+        s = scanner.nextLine();
         return s;
     }
     public boolean readAnswer(String message){
         String s;
         System.out.println(message);
         while (true) {
-            s = input.nextLine();
+            s = scanner.nextLine();
             switch (s) {
-                case ("да"):
+                case "yes":
                     return true;
-                case ("нет"):
+                case "no":
                     return false;
                 default:
                     System.out.println("Неверный ввод! Введите да/нет");
-                break;
+                    break;
             }
         }
     }

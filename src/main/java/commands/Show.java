@@ -1,7 +1,10 @@
 package commands;
 import java.util.Comparator;
 import java.util.PriorityQueue;
-import collection.*;
+import collection.City;
+import collection.CreationPriorityQueue;
+import IOutils.InputAndOutput;
+
 public class Show extends Commands {
     public Show () {
         super ("show", "вывести в стандартный поток вывода все элементы коллекции в строковом представлении");
@@ -12,9 +15,10 @@ public class Show extends Commands {
         }
     });
     public void doCommand (InputAndOutput inputAndOutput, CommandsControl commandsControl, CreationPriorityQueue priorityQueue) {
+        if (priorityQueue.getPriorityQueue().isEmpty()) inputAndOutput.output("Коллекция пуста");
         while (!priorityQueue.getPriorityQueue().isEmpty()) {
             City city = priorityQueue.pollFromQueue();
-            System.out.println(city);
+            inputAndOutput.output(city.toString());
             dop.add(city);
         }
         while (!dop.isEmpty()) {

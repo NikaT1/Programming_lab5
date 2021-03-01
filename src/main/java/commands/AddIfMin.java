@@ -2,8 +2,7 @@ package commands;
 
 import collection.City;
 import collection.CreationPriorityQueue;
-import collection.InputAndOutput;
-
+import IOutils.InputAndOutput;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
@@ -22,7 +21,7 @@ public class AddIfMin extends Commands {
             dop.add(city1);
         }
         City city = inputAndOutput.readCity();
-        if (city.getArea()<dop.peek().getArea()) {
+        if (priorityQueue.getPriorityQueue().isEmpty() || city.getArea()<dop.peek().getArea()) {
             priorityQueue.addToQueue(city);
             inputAndOutput.output("В коллекцию добавлен новый элемент: " + city.toString());
         } else inputAndOutput.output("В коллекцию не добавлен элемент: " + city.toString());

@@ -1,6 +1,8 @@
 package commands;
-import collection.*;
 
+import collection.City;
+import collection.CreationPriorityQueue;
+import IOutils.InputAndOutput;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
@@ -14,13 +16,14 @@ public class PrintAscending extends Commands {
         }
     });
     public void doCommand (InputAndOutput inputAndOutput, CommandsControl commandsControl, CreationPriorityQueue priorityQueue) {
+        if (priorityQueue.getPriorityQueue().isEmpty()) inputAndOutput.output("Коллекция пуста");
         while (!priorityQueue.getPriorityQueue().isEmpty()) {
             City city = priorityQueue.pollFromQueue();
             dop.add(city);
         }
         while (!dop.isEmpty()) {
             City city = dop.poll();
-            System.out.println(city);
+            inputAndOutput.output(city.toString());
             priorityQueue.addToQueue(city);
         }
     }

@@ -1,5 +1,4 @@
 package collection;
-
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 import java.io.*;
@@ -18,7 +17,7 @@ public class Parser {
     public void parseCSV(InputStreamReader lines) throws IOException, CsvValidationException, ParseException {
         CSVReader reader = new CSVReader(lines);
         String[] nextLine;
-        HashMap<String, Integer> fields = new HashMap<String, Integer>();
+        HashMap<String, Integer> fields = new HashMap<>();
         if ((nextLine = reader.readNext()) != null) {
             int i=0;
             for (String str: nextLine) {

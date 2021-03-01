@@ -1,14 +1,14 @@
 package commands;
 
 import collection.CreationPriorityQueue;
-import collection.InputAndOutput;
-import collection.UserInput;
+import IOutils.InputAndOutput;
 
 public class RemoveHead extends Commands {
     public RemoveHead() {
         super("remove_head", "вывести первый элемент коллекции и удалить его");
     }
     public void doCommand(InputAndOutput inputAndOutput, CommandsControl commandsControl, CreationPriorityQueue priorityQueue) {
-        inputAndOutput.output(priorityQueue.pollFromQueue().toString());
+        if (priorityQueue.getPriorityQueue().isEmpty()) inputAndOutput.output("Коллекция пуста");
+        else inputAndOutput.output(priorityQueue.pollFromQueue().toString());
     }
 }

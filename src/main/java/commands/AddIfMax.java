@@ -2,8 +2,7 @@ package commands;
 
 import collection.City;
 import collection.CreationPriorityQueue;
-import collection.InputAndOutput;
-import collection.UserInput;
+import IOutils.InputAndOutput;
 
 public class AddIfMax extends Commands {
     public AddIfMax() {
@@ -11,7 +10,7 @@ public class AddIfMax extends Commands {
     }
     public void doCommand(InputAndOutput inputAndOutput, CommandsControl commandsControl, CreationPriorityQueue priorityQueue) {
         City city = inputAndOutput.readCity();
-        if (city.getArea()>priorityQueue.getPriorityQueue().peek().getArea()) {
+        if (priorityQueue.getPriorityQueue().isEmpty() || city.getArea()>priorityQueue.getPriorityQueue().peek().getArea()) {
             priorityQueue.addToQueue(city);
             inputAndOutput.output("В коллекцию добавлен новый элемент: " + city.toString());
         } else inputAndOutput.output("В коллекцию не добавлен элемент: " + city.toString());
