@@ -10,7 +10,7 @@ public abstract class Commands {
         this.name = name;
         this.someInformation = someInformation;
     }
-    public void doCommand(InputAndOutput inputAndOutput, CommandsControl commandsControl, CreationPriorityQueue priorityQueue) {}
+    public void doCommand(InputAndOutput inputAndOutput, CommandsControl commandsControl, CreationPriorityQueue priorityQueue) throws Exception {}
     public String getName() {
         return name;
     }

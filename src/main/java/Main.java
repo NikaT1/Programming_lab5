@@ -36,7 +36,7 @@ public class Main {
             inputAndOutput.output("Ошибка при чтении из файла");
         }
         CommandsControl commandsControl = new CommandsControl();
-        UserInput userInput = new UserInput(inputAndOutput, commandsControl, priorityQueue);
+        UserInput userInput = new UserInput(inputAndOutput, commandsControl, priorityQueue, true);
         userInput.startInput();
     }
 }

@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class InputAndOutput {
-    private final Scanner scanner;
+    private Scanner scanner;
     private String argument;
     private boolean printMessages;
     public InputAndOutput(Scanner scanner, boolean printMessages) {
@@ -35,6 +35,11 @@ public class InputAndOutput {
 
     public Scanner getScanner() {
         return scanner;
+    }
+
+    public void setScanner(Scanner scanner) {
+
+        this.scanner = scanner;
     }
 
     public void setArgument(String argument) {
