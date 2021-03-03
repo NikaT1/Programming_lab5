@@ -64,7 +64,7 @@ public class InputAndOutput {
                 case "no":
                     return false;
                 default:
-                    System.out.println("Неверный ввод! Введите да/нет");
+                    System.out.println("Неверный ввод! Введите yes/no");
                     break;
             }
         }
