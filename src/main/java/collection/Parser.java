@@ -8,7 +8,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
-import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.HashMap;
 
@@ -28,9 +27,11 @@ public class Parser {
                 i++;
             }
         }
+        WrongValuesException e = new WrongValuesException();
         while ((nextLine = reader.readNext()) != null) {
             City city = new City();
             city.setId(Integer.parseInt(nextLine[fields.get("id")]));
+            if (!priorityQueue.getIdSet().add(city.getId())) throw e;
             city.setName(nextLine[fields.get("name")]);
             city.setCoordinates(new Coordinates(Float.parseFloat(nextLine[fields.get("x")]), Integer.parseInt(nextLine[fields.get("y")])));
             DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");

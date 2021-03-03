@@ -71,13 +71,6 @@ public class InputAndOutput {
     }
     public City readCity() throws NumberFormatException{
         City city = new City();
-        try {
-            Thread.sleep(10);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        Date date = new Date();
-        city.setId((int) (date.getTime()%100000000));
         city.setName(readField("Введите название города:"));
         city.setCoordinates(readCoordinates());
         city.setCreationDate(LocalDate.now());

@@ -1,20 +1,21 @@
 package collection;
 import com.opencsv.exceptions.CsvValidationException;
+import exceptions.TooMuchElementsException;
 import exceptions.WrongValuesException;
 
 import java.io.*;
 import java.text.ParseException;
 import java.time.LocalDate;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.PriorityQueue;
-import java.util.Random;
+import java.util.*;
 
 public class CreationPriorityQueue {
     private InputStreamReader lines;
     private String filePath;
     private LocalDate creationDate;
     private HashSet<Integer> idSet;
+
+
+
     public CreationPriorityQueue(FileInputStream fileInputStream, String args){
         filePath = args;
         BufferedInputStream file = new BufferedInputStream(fileInputStream);
@@ -32,13 +33,28 @@ public class CreationPriorityQueue {
         if (city.getClimate() == null) throw e;
         if (city.getGovernor() == null) throw e;
         if (city.getGovernor().getAge() <= 0) throw e;
-    };
-    public int generateId(int millis) {
-        Random rand = new Random();
-        while (!idSet.add(millis)) {
-            millis += rand.nextInt(10);
+    }
+    public HashSet<Integer> getIdSet() {
+        return idSet;
+    }
+    public Integer generateId() throws TooMuchElementsException {
+        Integer id;
+        int count = 0;
+        TooMuchElementsException e = new TooMuchElementsException();
+        if (Collections.max(idSet) == Integer.MAX_VALUE) {
+            id = 1;
+            count += 1;
         }
-        return millis;
+        else id = Collections.max(idSet) + 1;
+        while (!idSet.add(id)) {
+            if (id == Integer.MAX_VALUE) {
+                id = 1;
+                count += 1;
+            }
+            else id += 1;
+            if (count == 2) throw e;
+        }
+        return id;
     }
     private PriorityQueue<City> priorityQueue = new PriorityQueue<>(10, new Comparator<>(){
         public int compare(City c1, City c2) {
