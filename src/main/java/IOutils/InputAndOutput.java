@@ -71,21 +71,128 @@ public class InputAndOutput {
     }
     public City readCity() throws NumberFormatException{
         City city = new City();
-        city.setName(readField("Введите название города:"));
+        boolean flag = false;
+        String name = null;
+        while (!flag) {
+            flag = true;
+            name = readField("Введите название города:");
+            if (name.equals("")) {
+                output("Неверный формат данных, повторите ввод:");
+                flag = false;
+            }
+        }
+        city.setName(name);
         city.setCoordinates(readCoordinates());
         city.setCreationDate(LocalDate.now());
-        city.setArea(Integer.parseInt(readField("Введите размер территории (в квадратных метрах):")));
-        city.setPopulation(Long.parseLong(readField("Введите численность населения:")));
-        city.setMetersAboveSeaLevel(Long.parseLong(readField("Введите количество метров над уровнем моря:")));
-        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        try {
-            city.setEstablishmentDate(formatter.parse(readField("Введите дату создания:")));
-        } catch (ParseException e) {
-            e.printStackTrace();
+        flag = false;
+        int area = 1;
+        while (!flag) {
+            flag = true;
+            try {
+                area = Integer.parseInt(readField("Введите размер территории (в квадратных метрах):"));
+                if (area <= 0) {
+                    output("Значение меньше допустимого, повторите ввод:");
+                    flag = false;
+                }
+            } catch (NumberFormatException ex) {
+                output("Неверный формат данных, повторите ввод:");
+                flag = false;
+            }
         }
-        city.setAgglomeration(Integer.parseInt(readField("Введите размер агломерации (в квадратных метрах):")));
-        city.setClimate(Climate.valueOf(readField("Введите тип климата (RAIN_FOREST, MONSOON, HUMIDSUBTROPICAL):")));
-        city.setGovernor(new Human(Integer.parseInt(readField("Введите возраст губернатора:"))));
+        city.setArea(area);
+        flag = false;
+        long population = 1;
+        while (!flag) {
+            flag = true;
+            try {
+                population = Long.parseLong(readField("Введите численность населения:"));
+                if (population <= 0) {
+                    output("Значение меньше допустимого, повторите ввод:");
+                    flag = false;
+                }
+            } catch (NumberFormatException ex) {
+                output("Неверный формат данных, повторите ввод:");
+                flag = false;
+            }
+        }
+        city.setPopulation(population);
+        flag = false;
+        while (!flag) {
+            flag = true;
+            String s = readField("Введите количество метров над уровнем моря:");
+            if (s.equals("")) {
+                city.setEstablishmentDate(null);
+                break;
+            }
+            try {
+                city.setMetersAboveSeaLevel(Long.parseLong(s));
+            } catch (NumberFormatException ex) {
+                output("Неверный формат данных, повторите ввод:");
+                flag = false;
+            }
+        }
+        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        flag = false;
+        while (!flag) {
+            flag = true;
+            String s = readField("Введите дату создания (dd/MM/yyyy):");
+            if (s.equals("")) {
+                city.setEstablishmentDate(null);
+                break;
+            }
+            try {
+                city.setEstablishmentDate(formatter.parse(s));
+            } catch (ParseException e) {
+                output("Неверный формат данных, повторите ввод:");
+                flag = false;
+            }
+        }
+        flag = false;
+        while (!flag) {
+            flag = true;
+            String s = readField("Введите размер агломерации (в квадратных метрах):");
+            if (s.equals("")) {
+                city.setEstablishmentDate(null);
+                break;
+            }
+            try {
+                city.setAgglomeration(Integer.parseInt(s));
+            } catch (NumberFormatException e) {
+                output("Неверный формат данных, повторите ввод:");
+                flag = false;
+            }
+        }
+        flag = false;
+        while (!flag) {
+            flag = true;
+            try {
+                city.setClimate(Climate.valueOf(readField("Введите тип климата (RAIN_FOREST, MONSOON, HUMIDSUBTROPICAL):")));
+            } catch (IllegalArgumentException ex) {
+                output("Неверный формат данных, повторите ввод:");
+                flag = false;
+            }
+        }
+        flag = false;
+        Integer age = null;
+        while (!flag) {
+            flag = true;
+            String s = readField("Введите возраст губернатора:");
+            if (s.equals("")) {
+                age = null;
+                break;
+            }
+            try {
+                age = Integer.parseInt(s);
+                if (age <= 0) {
+                    output("Неверный формат данных, повторите ввод:");
+                    flag = false;
+                }
+            } catch (NumberFormatException ex) {
+                output("Неверный формат данных, повторите ввод:");
+                flag = false;
+            }
+        }
+        city.setGovernor(new Human(age));
         return city;
     }
     public Coordinates readCoordinates() {

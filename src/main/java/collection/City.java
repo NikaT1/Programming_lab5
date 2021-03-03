@@ -89,8 +89,11 @@ public class City {
     }
 
     public String getEstablishmentDate() {
-        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        return formatter.format(establishmentDate.getTime());
+        if (establishmentDate != null) {
+            DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            return formatter.format(establishmentDate.getTime());
+        }
+        else return null;
     }
 
     public Integer getAgglomeration() {

@@ -3,7 +3,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Scanner;
-
 import IOutils.InputAndOutput;
 import IOutils.UserInput;
 import collection.CreationPriorityQueue;
