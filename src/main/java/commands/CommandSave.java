@@ -30,11 +30,15 @@ public class CommandSave extends Commands {
                 printWriter.write(city.getCreationDate()+",");
                 printWriter.write(city.getArea()+",");
                 printWriter.write(city.getPopulation()+",");
-                printWriter.write(city.getMetersAboveSeaLevel()+",");
-                printWriter.write(city.getEstablishmentDate()+",");
-                printWriter.write(city.getAgglomeration()+",");
+                if (city.getMetersAboveSeaLevel() == null) printWriter.write(",");
+                else printWriter.write(city.getMetersAboveSeaLevel()+",");
+                if (city.getEstablishmentDate() == null) printWriter.write(",");
+                else printWriter.write(city.getEstablishmentDate()+",");
+                if (city.getAgglomeration() == null) printWriter.write(",");
+                else printWriter.write(city.getAgglomeration()+",");
                 printWriter.write(city.getClimate()+",");
-                printWriter.write(city.getGovernor().getAge() + "");
+                if (city.getGovernor().getAge() == null) printWriter.write(",");
+                else printWriter.write(city.getGovernor().getAge() + "");
                 printWriter.write("\n");
                 dop.add(city);
             }

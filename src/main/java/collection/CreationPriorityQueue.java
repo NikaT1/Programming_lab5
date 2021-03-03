@@ -1,5 +1,4 @@
 package collection;
-import com.opencsv.exceptions.CsvValidationException;
 import exceptions.TooMuchElementsException;
 import exceptions.WrongValuesException;
 
@@ -32,7 +31,7 @@ public class CreationPriorityQueue {
         if (city.getArea() <= 0) throw e;
         if (city.getClimate() == null) throw e;
         if (city.getGovernor() == null) throw e;
-        if (city.getGovernor().getAge() <= 0) throw e;
+        if (city.getGovernor().getAge()!=null && city.getGovernor().getAge() <= 0) throw e;
     }
     public HashSet<Integer> getIdSet() {
         return idSet;
@@ -77,7 +76,7 @@ public class CreationPriorityQueue {
     public City pollFromQueue() {
         return priorityQueue.poll();
     }
-    public String makeQueue() throws CsvValidationException, ParseException, IOException, WrongValuesException {
+    public String makeQueue() throws ParseException, WrongValuesException {
         creationDate = LocalDate.now();
         Parser parser = new Parser(this);
         parser.parseCSV(lines);

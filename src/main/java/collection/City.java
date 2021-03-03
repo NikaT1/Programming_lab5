@@ -90,7 +90,7 @@ public class City {
 
     public String getEstablishmentDate() {
         if (establishmentDate != null) {
-            DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             return formatter.format(establishmentDate.getTime());
         }
         else return null;
