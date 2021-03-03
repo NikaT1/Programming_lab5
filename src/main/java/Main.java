@@ -9,6 +9,7 @@ import IOutils.UserInput;
 import collection.CreationPriorityQueue;
 import com.opencsv.exceptions.CsvValidationException;
 import commands.CommandsControl;
+import exceptions.WrongValuesException;
 
 public class Main {
     public static void main(String[] args) {
@@ -24,9 +25,9 @@ public class Main {
         CreationPriorityQueue priorityQueue = new CreationPriorityQueue(fileInputStream, args[0]);
         try {
             priorityQueue.makeQueue();
-        } catch(NumberFormatException e) {
+        } catch(NumberFormatException | WrongValuesException e) {
             inputAndOutput.output("Значения полей объектов введены неверно");
-        }catch(NullPointerException e) {
+        } catch(NullPointerException e) {
             inputAndOutput.output("Файл сожержит не все поля, необходимые для создания элементов коллекции");
         } catch(CsvValidationException e){
             inputAndOutput.output("Что-то пошло не так при парсинге");

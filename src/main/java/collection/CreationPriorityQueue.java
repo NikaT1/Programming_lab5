@@ -1,5 +1,6 @@
 package collection;
 import com.opencsv.exceptions.CsvValidationException;
+import exceptions.WrongValuesException;
 
 import java.io.*;
 import java.text.ParseException;
@@ -20,6 +21,18 @@ public class CreationPriorityQueue {
         this.lines = new InputStreamReader(file);
         idSet = new HashSet<>();
     }
+    public void checkCity(City city) throws WrongValuesException {
+        WrongValuesException e = new WrongValuesException();
+        if (city.getName().equals("")) throw e;
+        if (city.getCoordinates() == null) throw e;
+        if (city.getCoordinates().getX() == null || city.getCoordinates().getX() <= -724) throw e;
+        if (city.getCoordinates().getY() == null || city.getCoordinates().getY() <= -989) throw e;
+        if (city.getPopulation() <= 0) throw e;
+        if (city.getArea() <= 0) throw e;
+        if (city.getClimate() == null) throw e;
+        if (city.getGovernor() == null) throw e;
+        if (city.getGovernor().getAge() <= 0) throw e;
+    };
     public int generateId(int millis) {
         Random rand = new Random();
         while (!idSet.add(millis)) {
@@ -48,7 +61,7 @@ public class CreationPriorityQueue {
     public City pollFromQueue() {
         return priorityQueue.poll();
     }
-    public void makeQueue() throws CsvValidationException, ParseException, IOException {
+    public void makeQueue() throws CsvValidationException, ParseException, IOException, WrongValuesException {
         creationDate = LocalDate.now();
         Parser parser = new Parser(this);
         parser.parseCSV(lines);
