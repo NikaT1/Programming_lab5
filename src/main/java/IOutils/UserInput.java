@@ -21,6 +21,7 @@ public class UserInput {
     }
     public void startInput() throws NoSuchCommandException{
         NoSuchCommandException ex = new NoSuchCommandException();
+        if (printMessages) inputAndOutput.output("Введите команду: ");
         while (input.hasNextLine()) {
             String[] s = input.nextLine().split(" ");
             try {
@@ -84,8 +85,9 @@ public class UserInput {
                 inputAndOutput.output("Данной команды не существует (узнать о доступных командах можно с помощью команды help)");
             } catch (Exception e) {
                 inputAndOutput.output("При выполнении команды возникла ошибка");
+                e.printStackTrace();
             }
-            if (printMessages) inputAndOutput.output("Введите следующую команду: ");
+            if (printMessages) inputAndOutput.output("Введите команду: ");
         }
     }
 }

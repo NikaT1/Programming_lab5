@@ -77,10 +77,11 @@ public class CreationPriorityQueue {
     public City pollFromQueue() {
         return priorityQueue.poll();
     }
-    public void makeQueue() throws CsvValidationException, ParseException, IOException, WrongValuesException {
+    public String makeQueue() throws CsvValidationException, ParseException, IOException, WrongValuesException {
         creationDate = LocalDate.now();
         Parser parser = new Parser(this);
         parser.parseCSV(lines);
+        return "Коллекция успешно создана";
     }
 }
 
