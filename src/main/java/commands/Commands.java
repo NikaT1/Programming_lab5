@@ -3,6 +3,10 @@ package commands;
 import collection.CreationPriorityQueue;
 import IOutils.InputAndOutput;
 
+/**
+ * Абстрактный класс для всех комманд.
+ */
+
 public abstract class Commands {
     private String someInformation;
     private String name;

@@ -11,6 +11,10 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.Scanner;
 
+/**
+ * Класс, осуществляющий ввод/вывод.
+ */
+
 public class InputAndOutput {
     private Scanner scanner;
     private String argument;
@@ -69,8 +73,7 @@ public class InputAndOutput {
             }
         }
     }
-    public City readCity() throws NumberFormatException{
-        City city = new City();
+    private String readName(){
         boolean flag = false;
         String name = null;
         while (!flag) {
@@ -81,10 +84,10 @@ public class InputAndOutput {
                 flag = false;
             }
         }
-        city.setName(name);
-        city.setCoordinates(readCoordinates());
-        city.setCreationDate(LocalDate.now());
-        flag = false;
+        return name;
+    }
+    private int readArea(){
+        boolean flag = false;
         int area = 1;
         while (!flag) {
             flag = true;
@@ -99,8 +102,10 @@ public class InputAndOutput {
                 flag = false;
             }
         }
-        city.setArea(area);
-        flag = false;
+        return area;
+    }
+    private long readPopulation(){
+        boolean flag = false;
         long population = 1;
         while (!flag) {
             flag = true;
@@ -115,71 +120,85 @@ public class InputAndOutput {
                 flag = false;
             }
         }
-        city.setPopulation(population);
-        flag = false;
+        return population;
+    }
+    private Long readMetersAboveSeaLevel(){
+        boolean flag = false;
+        Long metersAboveSeaLevel = null;
         while (!flag) {
             flag = true;
             String s = readField("Введите количество метров над уровнем моря:");
             if (s.equals("")) {
-                city.setEstablishmentDate(null);
-                break;
+                return null;
             }
             try {
-                city.setMetersAboveSeaLevel(Long.parseLong(s));
+                metersAboveSeaLevel = Long.parseLong(s);
             } catch (NumberFormatException ex) {
                 output("Неверный формат данных, повторите ввод:");
                 flag = false;
             }
         }
-        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        flag = false;
+        return metersAboveSeaLevel;
+    }
+    private Date readEstablishmentDate(){
+        boolean flag = false;
+        Date establishmentDate = null;
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         while (!flag) {
             flag = true;
-            String s = readField("Введите дату создания (dd/MM/yyyy):");
+            String s = readField("Введите дату создания (yyyy-MM-dd):");
             if (s.equals("")) {
-                city.setEstablishmentDate(null);
-                break;
+                return null;
             }
             try {
-                city.setEstablishmentDate(formatter.parse(s));
+                establishmentDate = formatter.parse(s);
             } catch (ParseException e) {
                 output("Неверный формат данных, повторите ввод:");
                 flag = false;
             }
         }
-        flag = false;
+        return establishmentDate;
+    }
+    private Integer readAgglomeration(){
+        boolean flag = false;
+        Integer agglomeration = null;
         while (!flag) {
             flag = true;
             String s = readField("Введите размер агломерации (в квадратных метрах):");
             if (s.equals("")) {
-                city.setEstablishmentDate(null);
-                break;
+                return null;
             }
             try {
-                city.setAgglomeration(Integer.parseInt(s));
+                agglomeration = Integer.parseInt(s);
             } catch (NumberFormatException e) {
                 output("Неверный формат данных, повторите ввод:");
                 flag = false;
             }
         }
-        flag = false;
+        return agglomeration;
+    }
+    private Climate readClimate(){
+        boolean flag = false;
+        Climate climate = null;
         while (!flag) {
             flag = true;
             try {
-                city.setClimate(Climate.valueOf(readField("Введите тип климата (RAIN_FOREST, MONSOON, HUMIDSUBTROPICAL):")));
+                climate = Climate.valueOf(readField("Введите тип климата (RAIN_FOREST, MONSOON, HUMIDSUBTROPICAL):"));
             } catch (IllegalArgumentException ex) {
                 output("Неверный формат данных, повторите ввод:");
                 flag = false;
             }
         }
-        flag = false;
+        return climate;
+    }
+    private Human readGovernor(){
+        boolean flag = false;
         Integer age = null;
         while (!flag) {
             flag = true;
             String s = readField("Введите возраст губернатора:");
             if (s.equals("")) {
-                age = null;
-                break;
+                return new Human(null);
             }
             try {
                 age = Integer.parseInt(s);
@@ -192,7 +211,20 @@ public class InputAndOutput {
                 flag = false;
             }
         }
-        city.setGovernor(new Human(age));
+        return new Human(age);
+    }
+    public City readCity() throws NumberFormatException{
+        City city = new City();
+        city.setName(readName());
+        city.setCoordinates(readCoordinates());
+        city.setCreationDate(LocalDate.now());
+        city.setArea(readArea());
+        city.setPopulation(readPopulation());
+        city.setMetersAboveSeaLevel(readMetersAboveSeaLevel());
+        city.setEstablishmentDate(readEstablishmentDate());
+        city.setAgglomeration(readAgglomeration());
+        city.setClimate(readClimate());
+        city.setGovernor(readGovernor());
         return city;
     }
     public Coordinates readCoordinates() {

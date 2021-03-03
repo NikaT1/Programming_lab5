@@ -1,5 +1,9 @@
 package commands;
 
+/**
+ * Enum TypeOfCommands.
+ * */
+
 public enum TypeOfCommands {
     HELP,
     INFO,

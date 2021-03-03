@@ -10,8 +10,13 @@ import java.io.FileNotFoundException;
 import java.util.HashSet;
 import java.util.Scanner;
 
+/**
+ * Класс для команды execute_script, которая считывает и исполняет скрипт из указанного файла.
+ */
+
 public class ExecuteScript extends Commands {
-    private HashSet<String> paths;
+
+    private final HashSet<String> paths;
     public ExecuteScript() {
         super("execute_script file_name", "считать и исполнить скрипт из указанного файла. В скрипте содержатся команды в таком же виде, в котором их вводит пользователь в интерактивном режиме.");
         paths = new HashSet<>();
@@ -32,6 +37,7 @@ public class ExecuteScript extends Commands {
                     inputAndOutput.setScanner(scanner);
                     UserInput userInput = new UserInput(inputAndOutput, commandsControl, priorityQueue, false);
                     userInput.startInput();
+                    paths.clear();
                     inputAndOutput.setScanner(primaryScanner);
                     inputAndOutput.setPrintMessages(true);
                 }

@@ -3,6 +3,10 @@ package commands;
 import collection.CreationPriorityQueue;
 import IOutils.InputAndOutput;
 
+/**
+ * Класс для команды exit, которая завершает программу без сохранения в файл коллекции.
+ */
+
 public class CommandExit extends Commands {
     public CommandExit() {
         super("exit", "завершить программу (без сохранения в файл)");

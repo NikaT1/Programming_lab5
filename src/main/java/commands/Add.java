@@ -5,6 +5,10 @@ import collection.CreationPriorityQueue;
 import IOutils.InputAndOutput;
 import exceptions.TooMuchElementsException;
 
+/**
+ * Класс для команды add, которая добавляет новый элемент в коллекцию.
+ */
+
 public class Add extends Commands {
     public Add() {
         super ("add", "добавить новый элемент в коллекцию");

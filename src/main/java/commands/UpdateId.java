@@ -6,6 +6,10 @@ import IOutils.InputAndOutput;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
+/**
+ * Класс для команды update, которая обновляет значение элемента коллекции по его id.
+ */
+
 public class UpdateId extends Commands {
     public UpdateId() {
         super("update id {element}", "обновить значение элемента коллекции, id которого равен заданному");

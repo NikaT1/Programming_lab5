@@ -6,6 +6,10 @@ import IOutils.InputAndOutput;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
+/**
+ * Класс для команды remove_by_id, которая удаляет элемент из коллекции по его id.
+ */
+
 public class RemoveById extends Commands {
     public RemoveById() {
         super("remove_by_id id", "удалить элемент из коллекции по его id");

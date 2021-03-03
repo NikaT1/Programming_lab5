@@ -8,6 +8,12 @@ import collection.CreationPriorityQueue;
 import commands.CommandsControl;
 import exceptions.WrongValuesException;
 
+/**
+ * Главный класс программы.
+ *
+ * @author Troynikova Veronika
+ */
+
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);

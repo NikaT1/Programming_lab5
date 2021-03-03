@@ -6,6 +6,11 @@ import IOutils.InputAndOutput;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
+/**
+ * Класс для команды group_counting_by_meters_above_sea_level, которая группирует элементы коллекции по значению
+ * поля metersAboveSeaLevel и выводит количество элементов в каждой группе.
+ */
+
 public class GroupCountingByMetersAboveSeaLevel extends Commands {
     public GroupCountingByMetersAboveSeaLevel() {
         super("group_counting_by_meters_above_sea_level", "сгруппировать элементы коллекции по значению поля metersAboveSeaLevel, вывести количество элементов в каждой группе");

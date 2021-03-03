@@ -4,6 +4,11 @@ import collection.City;
 import collection.CreationPriorityQueue;
 import IOutils.InputAndOutput;
 
+/**
+ * Класс для команды average_of_meters_above_sea_level, которая выводит среднее значение поля metersAboveSeaLevel
+ * для всех элементов коллекции.
+ */
+
 public class AverageOfMetersAboveSeaLevel extends Commands {
     public AverageOfMetersAboveSeaLevel() {
         super("average_of_meters_above_sea_level", "вывести среднее значение поля metersAboveSeaLevel для всех элементов коллекции");

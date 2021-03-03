@@ -2,10 +2,19 @@ package collection;
 import exceptions.TooMuchElementsException;
 import exceptions.WrongValuesException;
 
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.time.LocalDate;
-import java.util.*;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.PriorityQueue;
+
+/**
+ * Класс для создания коллекции и ее хранения.
+ */
 
 public class CreationPriorityQueue {
     private InputStreamReader lines;

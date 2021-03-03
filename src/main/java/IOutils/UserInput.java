@@ -6,6 +6,10 @@ import commands.CommandsControl;
 import commands.TypeOfCommands;
 import exceptions.NoSuchCommandException;
 
+/**
+ * Класс для распознавания введенных комманд.
+ */
+
 public class UserInput {
     private Scanner input;
     private boolean printMessages;

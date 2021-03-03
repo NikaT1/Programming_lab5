@@ -3,6 +3,10 @@ package commands;
 import collection.CreationPriorityQueue;
 import IOutils.InputAndOutput;
 
+/**
+ * Класс для команды help, которая выводит справку по доступным коммандам.
+ */
+
 public class Help extends Commands {
     public Help () {
         super ("help", "вывести справку по доступным командам");

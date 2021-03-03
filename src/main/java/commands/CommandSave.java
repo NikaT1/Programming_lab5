@@ -8,6 +8,10 @@ import java.io.PrintWriter;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
+/**
+ * Класс для команды save, которая сохраняет в файл коллекцию.
+ */
+
 public class CommandSave extends Commands {
     private PriorityQueue<City> dop = new PriorityQueue<City>(10, new Comparator<City>(){
         public int compare(City c1, City c2) {

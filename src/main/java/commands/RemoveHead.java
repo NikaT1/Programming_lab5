@@ -3,6 +3,10 @@ package commands;
 import collection.CreationPriorityQueue;
 import IOutils.InputAndOutput;
 
+/**
+ * Класс для команды remove_head, которая выводит и удаляет первый элемент из коллекции.
+ */
+
 public class RemoveHead extends Commands {
     public RemoveHead() {
         super("remove_head", "вывести первый элемент коллекции и удалить его");

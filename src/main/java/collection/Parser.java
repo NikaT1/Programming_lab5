@@ -9,6 +9,10 @@ import java.time.ZoneId;
 import java.util.HashMap;
 import java.util.Scanner;
 
+/**
+ * Класс для чтения данных из файла и создания элементов коллекции.
+ */
+
 public class Parser {
     private CreationPriorityQueue priorityQueue;
     public Parser(CreationPriorityQueue priorityQueue) {

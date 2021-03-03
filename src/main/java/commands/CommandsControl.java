@@ -2,6 +2,10 @@ package commands;
 
 import java.util.HashMap;
 
+/**
+ * Класс для создания объектов комманд и их хранения.
+ */
+
 public class CommandsControl {
     private HashMap<TypeOfCommands, Commands> commands = new HashMap();
     {

@@ -4,6 +4,11 @@ import collection.City;
 import collection.CreationPriorityQueue;
 import IOutils.InputAndOutput;
 
+/**
+ * Класс для команды add_if_max, которая добавляет новый элемент в коллекцию, если его значение превышает значение
+ * наибольшего элемента этой коллекции.
+ */
+
 public class AddIfMax extends Commands {
     public AddIfMax() {
         super("add_if_max {element}", "добавить новый элемент в коллекцию, если его значение превышает значение наибольшего элемента этой коллекции");

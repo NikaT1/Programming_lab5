@@ -5,6 +5,10 @@ import collection.City;
 import collection.CreationPriorityQueue;
 import IOutils.InputAndOutput;
 
+/**
+ * Класс для команды show, которая выводит в стандартный поток вывода все элементы коллекции в строковом представлении.
+ */
+
 public class Show extends Commands {
     public Show () {
         super ("show", "вывести в стандартный поток вывода все элементы коллекции в строковом представлении");

@@ -6,6 +6,11 @@ import IOutils.InputAndOutput;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
+/**
+ * Класс для команды add_if_min, которая добавляет новый элемент в коллекцию, если его значение меньше, чем у наименьшего
+ * элемента этой коллекции.
+ */
+
 public class AddIfMin extends Commands {
     public AddIfMin() {
         super("add_if_min {element}", "добавить новый элемент в коллекцию, если его значение меньше, чем у наименьшего элемента этой коллекции");

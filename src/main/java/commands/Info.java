@@ -1,6 +1,10 @@
 package commands;
 import IOutils.InputAndOutput;
-import collection.*;
+import collection.CreationPriorityQueue;
+
+/**
+ * Класс для команды info, которая выводит в стандартный поток вывода информацию о коллекции.
+ */
 
 public class Info extends Commands {
     public Info () {
