@@ -5,6 +5,7 @@ import exceptions.WrongValuesException;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.Collections;
@@ -24,10 +25,10 @@ public class CreationPriorityQueue {
 
 
 
-    public CreationPriorityQueue(FileInputStream fileInputStream, String args){
+    public CreationPriorityQueue(FileInputStream fileInputStream, String args) throws UnsupportedEncodingException {
         filePath = args;
         BufferedInputStream file = new BufferedInputStream(fileInputStream);
-        this.lines = new InputStreamReader(file);
+        this.lines = new InputStreamReader(file,"UTF-8");
         idSet = new HashSet<>();
     }
     public void checkCity(City city) throws WrongValuesException {
@@ -64,7 +65,7 @@ public class CreationPriorityQueue {
         }
         return id;
     }
-    private PriorityQueue<City> priorityQueue = new PriorityQueue<>(10, new Comparator<>(){
+    private PriorityQueue<City> priorityQueue = new PriorityQueue<>(10, new Comparator<City>(){
         public int compare(City c1, City c2) {
             return c2.getArea() - c1.getArea();
         }

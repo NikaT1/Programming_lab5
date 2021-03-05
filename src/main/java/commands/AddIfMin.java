@@ -15,7 +15,7 @@ public class AddIfMin extends Commands {
     public AddIfMin() {
         super("add_if_min {element}", "добавить новый элемент в коллекцию, если его значение меньше, чем у наименьшего элемента этой коллекции");
     }
-    private PriorityQueue<City> dop = new PriorityQueue<>(10, new Comparator<>(){
+    private PriorityQueue<City> dop = new PriorityQueue<>(10, new Comparator<City>(){
         public int compare(City c1, City c2) {
             return (c1.getArea() - c2.getArea());
         }

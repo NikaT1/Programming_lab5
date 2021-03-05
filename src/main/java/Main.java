@@ -1,5 +1,7 @@
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.util.Scanner;
 import IOutils.InputAndOutput;
@@ -28,7 +30,12 @@ public class Main {
             inputAndOutput.output("Файл не существует или не хватает прав на чтение");
             System.exit(1);
         }
-        CreationPriorityQueue priorityQueue = new CreationPriorityQueue(fileInputStream, args[0]);
+        CreationPriorityQueue priorityQueue = null;
+        try {
+            priorityQueue = new CreationPriorityQueue(fileInputStream, args[0]);
+        } catch (UnsupportedEncodingException e) {
+            inputAndOutput.output("Данные в файла невозможно представить в нужной кодироваке");
+        }
         try {
             System.out.println(priorityQueue.makeQueue());
         } catch(NumberFormatException | WrongValuesException e) {
