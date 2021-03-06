@@ -38,6 +38,7 @@ public class ExecuteScript extends Commands {
                     inputAndOutput.setScanner(scanner);
                     UserInput userInput = new UserInput(inputAndOutput, commandsControl, priorityQueue, false);
                     userInput.startInput();
+                    inputAndOutput.output("Скрипт из файла " + inputAndOutput.getArgument() + " успешно исполнен");
                     paths.clear();
                     inputAndOutput.setScanner(primaryScanner);
                     inputAndOutput.setPrintMessages(true);

@@ -13,6 +13,9 @@ public class RemoveHead extends Commands {
     }
     public void doCommand(InputAndOutput inputAndOutput, CommandsControl commandsControl, CreationPriorityQueue priorityQueue) {
         if (priorityQueue.getPriorityQueue().isEmpty()) inputAndOutput.output("Коллекция пуста");
-        else inputAndOutput.output(priorityQueue.pollFromQueue().toString());
+        else {
+            inputAndOutput.output(priorityQueue.pollFromQueue().toString());
+            inputAndOutput.output("удаление элемента успешно завершено");
+        }
     }
 }

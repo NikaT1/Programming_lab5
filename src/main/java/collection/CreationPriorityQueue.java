@@ -29,7 +29,7 @@ public class CreationPriorityQueue {
         filePath = args;
         BufferedInputStream file = new BufferedInputStream(fileInputStream);
         this.lines = new InputStreamReader(file,"UTF-8");
-        idSet = new HashSet<>();
+        idSet = new HashSet<Integer>();
     }
     public void checkCity(City city) throws WrongValuesException {
         WrongValuesException e = new WrongValuesException();

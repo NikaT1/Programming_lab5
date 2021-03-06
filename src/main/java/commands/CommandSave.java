@@ -50,6 +50,7 @@ public class CommandSave extends Commands {
             while (!dop.isEmpty()) {
                 priorityQueue.addToQueue(dop.poll());
             }
+            inputAndOutput.output("Коллекция успешно сохранена");
         } catch (FileNotFoundException e) {
             inputAndOutput.output("Не хватает прав на запись в файл");
         }
