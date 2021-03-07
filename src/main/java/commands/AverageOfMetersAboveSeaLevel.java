@@ -13,6 +13,7 @@ public class AverageOfMetersAboveSeaLevel extends Commands {
     public AverageOfMetersAboveSeaLevel() {
         super("average_of_meters_above_sea_level", "вывести среднее значение поля metersAboveSeaLevel для всех элементов коллекции");
     }
+
     public void doCommand(InputAndOutput inputAndOutput, CommandsControl commandsControl, CreationPriorityQueue priorityQueue) {
         if (priorityQueue.getPriorityQueue().isEmpty())
             inputAndOutput.output("Коллекция пуста; среднее значение поля metersAboveSeaLevel установить невозможно");

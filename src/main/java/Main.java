@@ -4,6 +4,9 @@ import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import IOutils.InputAndOutput;
 import IOutils.UserInput;
 import collection.CreationPriorityQueue;
@@ -22,11 +25,17 @@ public class Main {
         InputAndOutput inputAndOutput = new InputAndOutput(scanner, true);
         FileInputStream fileInputStream = null;
         try {
+            Pattern pattern = Pattern.compile("/dev/*");
+            Matcher matcher = pattern.matcher(args[0]);
+            if (matcher.find()) {
+                inputAndOutput.output("Вы задали недопустимое имя файла");
+                System.exit(1);
+            }
             fileInputStream = new FileInputStream(args[0]);
-        } catch(ArrayIndexOutOfBoundsException e){
+        } catch (ArrayIndexOutOfBoundsException e) {
             inputAndOutput.output("Вы не задали имя файла");
             System.exit(1);
-        }catch(FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             inputAndOutput.output("Файл не существует или не хватает прав на чтение");
             System.exit(1);
         }
@@ -38,17 +47,17 @@ public class Main {
         }
         try {
             System.out.println(priorityQueue.makeQueue());
-        } catch(NumberFormatException | WrongValuesException e) {
+        } catch (NumberFormatException | WrongValuesException e) {
             inputAndOutput.output("Значения полей объектов введены неверно");
             System.exit(1);
-        } catch(NullPointerException e) {
+        } catch (NullPointerException e) {
             inputAndOutput.output("Файл сожержит не все поля, необходимые для создания элементов коллекции");
             e.printStackTrace();
             System.exit(1);
-        } catch(ParseException e) {
+        } catch (ParseException e) {
             inputAndOutput.output("Дата в файле введена в неправильном формате");
             System.exit(1);
-        } catch(Exception e){
+        } catch (Exception e) {
             inputAndOutput.output("Ошибка при чтении из файла");
             e.printStackTrace();
             System.exit(1);

@@ -11,8 +11,9 @@ import exceptions.TooMuchElementsException;
 
 public class Add extends Commands {
     public Add() {
-        super ("add", "добавить новый элемент в коллекцию");
+        super("add", "добавить новый элемент в коллекцию");
     }
+
     public void doCommand(InputAndOutput inputAndOutput, CommandsControl commandsControl, CreationPriorityQueue priorityQueue) {
         try {
             City city = inputAndOutput.readCity();

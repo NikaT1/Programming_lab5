@@ -1,5 +1,7 @@
 package collection;
+
 import exceptions.WrongValuesException;
+
 import java.io.*;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -15,19 +17,21 @@ import java.util.Scanner;
 
 public class Parser {
     private CreationPriorityQueue priorityQueue;
+
     public Parser(CreationPriorityQueue priorityQueue) {
         this.priorityQueue = priorityQueue;
     }
+
     public void parseCSV(InputStreamReader lines) throws ParseException, WrongValuesException {
         Scanner scanner = new Scanner(lines);
         String[] nextLine;
         HashMap<String, Integer> fields = new HashMap<>();
         nextLine = scanner.nextLine().split(",");
-            int i=0;
-            for (String str: nextLine) {
-                fields.put(str, i);
-                i++;
-            }
+        int i = 0;
+        for (String str : nextLine) {
+            fields.put(str, i);
+            i++;
+        }
 
         WrongValuesException e = new WrongValuesException();
         while (scanner.hasNext()) {
@@ -41,12 +45,14 @@ public class Parser {
             city.setCreationDate(Instant.ofEpochMilli(formatter.parse(nextLine[fields.get("creationDate")]).getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
             city.setArea(Integer.parseInt(nextLine[fields.get("area")]));
             city.setPopulation(Long.parseLong(nextLine[fields.get("population")]));
-            if (!nextLine[fields.get("metersAboveSeaLevel")].equals("")) city.setMetersAboveSeaLevel(Long.parseLong(nextLine[fields.get("metersAboveSeaLevel")]));
+            if (!nextLine[fields.get("metersAboveSeaLevel")].equals(""))
+                city.setMetersAboveSeaLevel(Long.parseLong(nextLine[fields.get("metersAboveSeaLevel")]));
             else city.setMetersAboveSeaLevel(null);
             if (!nextLine[fields.get("establishmentDate")].equals("")) {
                 city.setEstablishmentDate(formatter.parse(nextLine[fields.get("establishmentDate")]));
             } else city.setEstablishmentDate(null);
-            if (!nextLine[fields.get("agglomeration")].equals(""))  city.setAgglomeration(Integer.parseInt(nextLine[fields.get("agglomeration")]));
+            if (!nextLine[fields.get("agglomeration")].equals(""))
+                city.setAgglomeration(Integer.parseInt(nextLine[fields.get("agglomeration")]));
             else city.setAgglomeration(null);
             city.setClimate(Climate.valueOf(nextLine[fields.get("climate")]));
             if (!nextLine[fields.get("age")].equals("")) {

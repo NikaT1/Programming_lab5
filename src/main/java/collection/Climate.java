@@ -1,4 +1,5 @@
 package collection;
+
 /**
  * Enum Climate.
  */

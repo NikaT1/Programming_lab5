@@ -8,6 +8,7 @@ import java.util.HashMap;
 
 public class CommandsControl {
     private HashMap<TypeOfCommands, Commands> commands = new HashMap();
+
     {
         commands.put(TypeOfCommands.HELP, new Help());
         commands.put(TypeOfCommands.SHOW, new Show());
@@ -26,6 +27,7 @@ public class CommandsControl {
         commands.put(TypeOfCommands.GROUP_COUNTING_BY_METERS_ABOVE_SEA_LEVEL, new GroupCountingByMetersAboveSeaLevel());
         commands.put(TypeOfCommands.PRINT_ASCENDING, new PrintAscending());
     }
+
     public HashMap<TypeOfCommands, Commands> getCommands() {
         return commands;
     }

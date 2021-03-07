@@ -4,6 +4,7 @@ import collection.City;
 import collection.Climate;
 import collection.Coordinates;
 import collection.Human;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -19,6 +20,7 @@ public class InputAndOutput {
     private Scanner scanner;
     private String argument;
     private boolean printMessages;
+
     public InputAndOutput(Scanner scanner, boolean printMessages) {
         this.scanner = scanner;
         this.printMessages = printMessages;
@@ -27,10 +29,6 @@ public class InputAndOutput {
 
     public void setPrintMessages(boolean printMessages) {
         this.printMessages = printMessages;
-    }
-
-    public void deleteArgument(){
-        argument = null;
     }
 
     public String getArgument() {
@@ -51,13 +49,14 @@ public class InputAndOutput {
         this.argument = argument;
     }
 
-    public String readField(String message){
+    public String readField(String message) {
         String s;
         if (printMessages) System.out.println(message);
         s = scanner.nextLine();
         return s;
     }
-    public boolean readAnswer(String message){
+
+    public boolean readAnswer(String message) {
         String s;
         System.out.println(message);
         while (true) {
@@ -73,7 +72,8 @@ public class InputAndOutput {
             }
         }
     }
-    private String readName(){
+
+    private String readName() {
         boolean flag = false;
         String name = null;
         while (!flag) {
@@ -86,7 +86,8 @@ public class InputAndOutput {
         }
         return name;
     }
-    private int readArea(){
+
+    private int readArea() {
         boolean flag = false;
         int area = 1;
         while (!flag) {
@@ -104,7 +105,8 @@ public class InputAndOutput {
         }
         return area;
     }
-    private long readPopulation(){
+
+    private long readPopulation() {
         boolean flag = false;
         long population = 1;
         while (!flag) {
@@ -122,7 +124,8 @@ public class InputAndOutput {
         }
         return population;
     }
-    private Long readMetersAboveSeaLevel(){
+
+    private Long readMetersAboveSeaLevel() {
         boolean flag = false;
         Long metersAboveSeaLevel = null;
         while (!flag) {
@@ -140,7 +143,8 @@ public class InputAndOutput {
         }
         return metersAboveSeaLevel;
     }
-    private Date readEstablishmentDate(){
+
+    private Date readEstablishmentDate() {
         boolean flag = false;
         Date establishmentDate = null;
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -159,7 +163,8 @@ public class InputAndOutput {
         }
         return establishmentDate;
     }
-    private Integer readAgglomeration(){
+
+    private Integer readAgglomeration() {
         boolean flag = false;
         Integer agglomeration = null;
         while (!flag) {
@@ -177,7 +182,8 @@ public class InputAndOutput {
         }
         return agglomeration;
     }
-    private Climate readClimate(){
+
+    private Climate readClimate() {
         boolean flag = false;
         Climate climate = null;
         while (!flag) {
@@ -191,7 +197,8 @@ public class InputAndOutput {
         }
         return climate;
     }
-    private Human readGovernor(){
+
+    private Human readGovernor() {
         boolean flag = false;
         Integer age = null;
         while (!flag) {
@@ -213,7 +220,8 @@ public class InputAndOutput {
         }
         return new Human(age);
     }
-    public City readCity() throws NumberFormatException{
+
+    public City readCity() throws NumberFormatException {
         City city = new City();
         city.setName(readName());
         city.setCoordinates(readCoordinates());
@@ -227,6 +235,7 @@ public class InputAndOutput {
         city.setGovernor(readGovernor());
         return city;
     }
+
     public Coordinates readCoordinates() {
         boolean flag = false;
         Float x = null;
@@ -260,6 +269,7 @@ public class InputAndOutput {
         }
         return new Coordinates(x, y);
     }
+
     public void output(String s) {
         System.out.println(s);
     }

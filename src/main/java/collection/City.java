@@ -1,4 +1,5 @@
 package collection;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -20,6 +21,7 @@ public class City {
     private Integer agglomeration;
     private Climate climate; //Поле не может быть null
     private Human governor; //Поле не может быть null
+
     public void setName(String name) {
         this.name = name;
     }
@@ -96,8 +98,7 @@ public class City {
         if (establishmentDate != null) {
             DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             return formatter.format(establishmentDate.getTime());
-        }
-        else return null;
+        } else return null;
     }
 
     public Integer getAgglomeration() {
@@ -111,6 +112,7 @@ public class City {
     public Human getGovernor() {
         return governor;
     }
+
     public String toString() {
         return getId() + ", название: " + getName() + ", " +
                 coordinates.toString() + ", дата создания: " +

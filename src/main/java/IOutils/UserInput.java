@@ -1,6 +1,7 @@
 package IOutils;
 
 import java.util.Scanner;
+
 import collection.CreationPriorityQueue;
 import commands.CommandsControl;
 import commands.TypeOfCommands;
@@ -16,6 +17,7 @@ public class UserInput {
     private CommandsControl commandsControl;
     private CreationPriorityQueue priorityQueue;
     private InputAndOutput inputAndOutput;
+
     public UserInput(InputAndOutput inputAndOutput, CommandsControl commandsControl, CreationPriorityQueue priorityQueue, boolean printMessages) {
         this.commandsControl = commandsControl;
         this.input = inputAndOutput.getScanner();
@@ -23,7 +25,8 @@ public class UserInput {
         this.inputAndOutput = inputAndOutput;
         this.printMessages = printMessages;
     }
-    public void startInput() throws NoSuchCommandException{
+
+    public void startInput() throws NoSuchCommandException {
         NoSuchCommandException ex = new NoSuchCommandException();
         if (printMessages) inputAndOutput.output("Введите команду: ");
         while (input.hasNextLine()) {
@@ -54,7 +57,6 @@ public class UserInput {
                     case ("update"):
                         inputAndOutput.setArgument(s[1]);
                         commandsControl.getCommands().get(TypeOfCommands.UPDATE_ID).doCommand(inputAndOutput, commandsControl, priorityQueue);
-                        inputAndOutput.deleteArgument();
                         break;
                     case ("add_if_max"):
                         commandsControl.getCommands().get(TypeOfCommands.ADD_IF_MAX).doCommand(inputAndOutput, commandsControl, priorityQueue);
@@ -85,6 +87,8 @@ public class UserInput {
                     default:
                         throw ex;
                 }
+            } catch (ArrayIndexOutOfBoundsException e) {
+                inputAndOutput.output("Вы ввели не все аргументы команды");
             } catch (NoSuchCommandException e) {
                 inputAndOutput.output("Данной команды не существует (узнать о доступных командах можно с помощью команды help)");
             } catch (Exception e) {
