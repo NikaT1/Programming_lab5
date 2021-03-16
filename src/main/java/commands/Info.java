@@ -1,7 +1,7 @@
 package commands;
 
 import IOutils.InputAndOutput;
-import collection.CreationPriorityQueue;
+import collectionUtils.CreationPriorityQueue;
 
 /**
  * Класс для команды info, которая выводит в стандартный поток вывода информацию о коллекции.

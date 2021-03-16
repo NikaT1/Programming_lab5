@@ -1,6 +1,6 @@
 package commands;
 
-import collection.CreationPriorityQueue;
+import collectionUtils.CreationPriorityQueue;
 import IOutils.InputAndOutput;
 
 /**

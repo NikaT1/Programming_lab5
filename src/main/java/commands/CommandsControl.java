@@ -7,7 +7,7 @@ import java.util.HashMap;
  */
 
 public class CommandsControl {
-    private HashMap<TypeOfCommands, Commands> commands = new HashMap();
+    private final HashMap<TypeOfCommands, Commands> commands = new HashMap<>();
 
     {
         commands.put(TypeOfCommands.HELP, new Help());

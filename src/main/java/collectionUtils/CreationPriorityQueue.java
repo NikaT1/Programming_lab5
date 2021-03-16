@@ -1,5 +1,6 @@
-package collection;
+package collectionUtils;
 
+import collection.City;
 import exceptions.TooMuchElementsException;
 
 import java.io.BufferedInputStream;
@@ -87,7 +88,7 @@ public class CreationPriorityQueue {
     public String makeQueue() throws ParseException, NumberFormatException {
         creationDate = LocalDate.now();
         Parser parser = new Parser(this);
-        parser.parseCSV(lines);
+        parser.parseFile(lines);
         return "Коллекция успешно создана";
     }
 }

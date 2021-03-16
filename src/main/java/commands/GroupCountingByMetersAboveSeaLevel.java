@@ -1,10 +1,9 @@
 package commands;
 
 import collection.City;
-import collection.CreationPriorityQueue;
+import collectionUtils.CreationPriorityQueue;
 import IOutils.InputAndOutput;
 
-import java.util.Comparator;
 import java.util.PriorityQueue;
 
 /**
@@ -17,20 +16,14 @@ public class GroupCountingByMetersAboveSeaLevel extends Commands {
         super("group_counting_by_meters_above_sea_level", "сгруппировать элементы коллекции по значению поля metersAboveSeaLevel, вывести количество элементов в каждой группе");
     }
 
-    private final PriorityQueue<City> dop = new PriorityQueue<>(10, new Comparator<City>() {
-        public int compare(City c1, City c2) {
-            if (c2.getMetersAboveSeaLevel()!=null && c1.getMetersAboveSeaLevel()!=null) {
-                if (c2.getMetersAboveSeaLevel()<c1.getMetersAboveSeaLevel()) {
-                    return -1;
-                } else if (c2.getMetersAboveSeaLevel()<c1.getMetersAboveSeaLevel()) {
-                    return 1;
-                } else return -1;
-            } else if (c2.getMetersAboveSeaLevel()==null && c1.getMetersAboveSeaLevel()!=null) {
-                return -1;
-            } else if (c2.getMetersAboveSeaLevel()!=null && c1.getMetersAboveSeaLevel()==null) {
-                return 1;
-            } else return -1;
-        }
+    private final PriorityQueue<City> dop = new PriorityQueue<>(10, (c1, c2) -> {
+        if (c2.getMetersAboveSeaLevel() != null && c1.getMetersAboveSeaLevel() != null) {
+            return c1.getMetersAboveSeaLevel().compareTo(c2.getMetersAboveSeaLevel());
+        } else if (c2.getMetersAboveSeaLevel() == null && c1.getMetersAboveSeaLevel() != null) {
+            return -1;
+        } else if (c2.getMetersAboveSeaLevel() != null && c1.getMetersAboveSeaLevel() == null) {
+            return 1;
+        } else return 0;
     });
 
     public void doCommand(InputAndOutput inputAndOutput, CommandsControl commandsControl, CreationPriorityQueue priorityQueue) {
@@ -52,7 +45,7 @@ public class GroupCountingByMetersAboveSeaLevel extends Commands {
             priorityQueue.addToQueue(city);
             while (!dop.isEmpty()) {
                 city = dop.poll();
-                if (meters != null && !meters.equals(city.getMetersAboveSeaLevel()) || meters == null && city.getMetersAboveSeaLevel()!=null) {
+                if (meters != null && !meters.equals(city.getMetersAboveSeaLevel()) || meters == null && city.getMetersAboveSeaLevel() != null) {
                     meters = city.getMetersAboveSeaLevel();
                     inputAndOutput.output("Группа " + meters + " (м):");
                 }

@@ -1,6 +1,6 @@
 package commands;
 
-import collection.CreationPriorityQueue;
+import collectionUtils.CreationPriorityQueue;
 import IOutils.InputAndOutput;
 
 /**
@@ -8,8 +8,8 @@ import IOutils.InputAndOutput;
  */
 
 public abstract class Commands {
-    private String someInformation;
-    private String name;
+    private final String someInformation;
+    private final String name;
 
     public Commands(String name, String someInformation) {
         this.name = name;

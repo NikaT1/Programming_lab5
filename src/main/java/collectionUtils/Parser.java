@@ -1,6 +1,12 @@
-package collection;
+package collectionUtils;
 
-import java.io.*;
+import collection.City;
+import collection.Climate;
+import collection.Coordinates;
+import collection.Human;
+
+
+import java.io.InputStreamReader;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -13,14 +19,14 @@ import java.util.Scanner;
  * Класс для чтения данных из файла и создания элементов коллекции.
  */
 
-public class Parser {
-    private CreationPriorityQueue priorityQueue;
+public class Parser implements ParserInterface {
+    private final CreationPriorityQueue priorityQueue;
 
     public Parser(CreationPriorityQueue priorityQueue) {
         this.priorityQueue = priorityQueue;
     }
 
-    public void parseCSV(InputStreamReader lines) throws ParseException, NumberFormatException {
+    public void parseFile(InputStreamReader lines) throws ParseException, NumberFormatException {
         Scanner scanner = new Scanner(lines);
         String[] nextLine;
         HashMap<String, Integer> fields = new HashMap<>();

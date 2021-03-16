@@ -3,7 +3,7 @@ package commands;
 import java.util.PriorityQueue;
 
 import collection.City;
-import collection.CreationPriorityQueue;
+import collectionUtils.CreationPriorityQueue;
 import IOutils.InputAndOutput;
 
 /**

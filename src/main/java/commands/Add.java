@@ -1,7 +1,7 @@
 package commands;
 
 import collection.City;
-import collection.CreationPriorityQueue;
+import collectionUtils.CreationPriorityQueue;
 import IOutils.InputAndOutput;
 import exceptions.TooMuchElementsException;
 

@@ -2,7 +2,7 @@ package IOutils;
 
 import java.util.Scanner;
 
-import collection.CreationPriorityQueue;
+import collectionUtils.CreationPriorityQueue;
 import commands.CommandsControl;
 import commands.TypeOfCommands;
 import exceptions.NoSuchCommandException;
@@ -12,11 +12,11 @@ import exceptions.NoSuchCommandException;
  */
 
 public class UserInput {
-    private Scanner input;
-    private boolean printMessages;
-    private CommandsControl commandsControl;
-    private CreationPriorityQueue priorityQueue;
-    private InputAndOutput inputAndOutput;
+    private final Scanner input;
+    private final boolean printMessages;
+    private final CommandsControl commandsControl;
+    private final CreationPriorityQueue priorityQueue;
+    private final InputAndOutput inputAndOutput;
 
     public UserInput(InputAndOutput inputAndOutput, CommandsControl commandsControl, CreationPriorityQueue priorityQueue, boolean printMessages) {
         this.commandsControl = commandsControl;

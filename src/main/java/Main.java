@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 import IOutils.InputAndOutput;
 import IOutils.UserInput;
-import collection.CreationPriorityQueue;
+import collectionUtils.CreationPriorityQueue;
 import commands.CommandsControl;
 
 /**
@@ -44,7 +44,7 @@ public class Main {
             inputAndOutput.output("Данные в файла невозможно представить в нужной кодировке");
         }
         try {
-            System.out.println(priorityQueue.makeQueue());
+            if (priorityQueue!=null) System.out.println(priorityQueue.makeQueue());
         } catch (NumberFormatException e) {
             inputAndOutput.output("Значения полей объектов введены неверно");
             System.exit(1);

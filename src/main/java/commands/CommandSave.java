@@ -1,12 +1,11 @@
 package commands;
 
 import collection.City;
-import collection.CreationPriorityQueue;
+import collectionUtils.CreationPriorityQueue;
 import IOutils.InputAndOutput;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.util.Comparator;
 import java.util.PriorityQueue;
 
 /**
@@ -14,11 +13,7 @@ import java.util.PriorityQueue;
  */
 
 public class CommandSave extends Commands {
-    private PriorityQueue<City> dop = new PriorityQueue<City>(10, new Comparator<City>() {
-        public int compare(City c1, City c2) {
-            return (c2.getArea() - c1.getArea());
-        }
-    });
+    private final PriorityQueue<City> dop = new PriorityQueue<>(10, (c1, c2) -> (c2.getArea() - c1.getArea()));
 
     public CommandSave() {
         super("save", "сохранить коллекцию в файл");
