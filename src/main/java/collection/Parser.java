@@ -1,7 +1,5 @@
 package collection;
 
-import exceptions.WrongValuesException;
-
 import java.io.*;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -22,7 +20,7 @@ public class Parser {
         this.priorityQueue = priorityQueue;
     }
 
-    public void parseCSV(InputStreamReader lines) throws ParseException, WrongValuesException {
+    public void parseCSV(InputStreamReader lines) throws ParseException, NumberFormatException {
         Scanner scanner = new Scanner(lines);
         String[] nextLine;
         HashMap<String, Integer> fields = new HashMap<>();
@@ -32,13 +30,11 @@ public class Parser {
             fields.put(str, i);
             i++;
         }
-
-        WrongValuesException e = new WrongValuesException();
         while (scanner.hasNext()) {
             nextLine = scanner.nextLine().split(",", -1);
             City city = new City();
             city.setId(Integer.parseInt(nextLine[fields.get("id")]));
-            if (!priorityQueue.getIdSet().add(city.getId())) throw e;
+            if (!priorityQueue.getIdSet().add(city.getId())) throw new NumberFormatException();
             city.setName(nextLine[fields.get("name")]);
             city.setCoordinates(new Coordinates(Float.parseFloat(nextLine[fields.get("x")]), Integer.parseInt(nextLine[fields.get("y")])));
             DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");

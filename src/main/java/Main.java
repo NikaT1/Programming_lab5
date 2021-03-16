@@ -10,7 +10,6 @@ import IOutils.InputAndOutput;
 import IOutils.UserInput;
 import collection.CreationPriorityQueue;
 import commands.CommandsControl;
-import exceptions.WrongValuesException;
 
 /**
  * Главный класс программы.
@@ -42,16 +41,15 @@ public class Main {
         try {
             priorityQueue = new CreationPriorityQueue(fileInputStream, args[0]);
         } catch (UnsupportedEncodingException e) {
-            inputAndOutput.output("Данные в файла невозможно представить в нужной кодироваке");
+            inputAndOutput.output("Данные в файла невозможно представить в нужной кодировке");
         }
         try {
             System.out.println(priorityQueue.makeQueue());
-        } catch (NumberFormatException | WrongValuesException e) {
+        } catch (NumberFormatException e) {
             inputAndOutput.output("Значения полей объектов введены неверно");
             System.exit(1);
         } catch (NullPointerException e) {
             inputAndOutput.output("Файл сожержит не все поля, необходимые для создания элементов коллекции");
-            e.printStackTrace();
             System.exit(1);
         } catch (ParseException e) {
             inputAndOutput.output("Дата в файле введена в неправильном формате");

@@ -16,11 +16,7 @@ public class PrintAscending extends Commands {
         super("print_ascending", "вывести элементы коллекции в порядке возрастания");
     }
 
-    private PriorityQueue<City> dop = new PriorityQueue<City>(10, new Comparator<City>() {
-        public int compare(City c1, City c2) {
-            return (c1.getArea() - c2.getArea());
-        }
-    });
+    private final PriorityQueue<City> dop = new PriorityQueue<>(10, Comparator.comparingInt(City::getArea));
 
     public void doCommand(InputAndOutput inputAndOutput, CommandsControl commandsControl, CreationPriorityQueue priorityQueue) {
         if (priorityQueue.getPriorityQueue().isEmpty()) inputAndOutput.output("Коллекция пуста");

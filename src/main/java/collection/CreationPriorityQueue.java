@@ -1,16 +1,15 @@
 package collection;
 
 import exceptions.TooMuchElementsException;
-import exceptions.WrongValuesException;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.PriorityQueue;
 
@@ -19,30 +18,26 @@ import java.util.PriorityQueue;
  */
 
 public class CreationPriorityQueue {
-    private InputStreamReader lines;
-    private String filePath;
+    private final InputStreamReader lines;
+    private final String filePath;
     private LocalDate creationDate;
-    private HashSet<Integer> idSet;
+    private final HashSet<Integer> idSet;
 
 
     public CreationPriorityQueue(FileInputStream fileInputStream, String args) throws UnsupportedEncodingException {
         filePath = args;
         BufferedInputStream file = new BufferedInputStream(fileInputStream);
-        this.lines = new InputStreamReader(file, "UTF-8");
-        idSet = new HashSet<Integer>();
+        this.lines = new InputStreamReader(file, StandardCharsets.UTF_8);
+        idSet = new HashSet<>();
     }
 
-    public void checkCity(City city) throws WrongValuesException {
-        WrongValuesException e = new WrongValuesException();
-        if (city.getName().equals("")) throw e;
-        if (city.getCoordinates() == null) throw e;
-        if (city.getCoordinates().getX() == null || city.getCoordinates().getX() <= -724) throw e;
-        if (city.getCoordinates().getY() == null || city.getCoordinates().getY() <= -989) throw e;
-        if (city.getPopulation() <= 0) throw e;
-        if (city.getArea() <= 0) throw e;
-        if (city.getClimate() == null) throw e;
-        if (city.getGovernor() == null) throw e;
-        if (city.getGovernor().getAge() != null && city.getGovernor().getAge() <= 0) throw e;
+    public void checkCity(City city) throws NumberFormatException {
+        if (city.getName().equals("") || city.getCoordinates() == null || city.getCoordinates().getX() == null ||
+                city.getCoordinates().getY() == null || city.getClimate() == null || city.getGovernor() == null)
+            throw new NullPointerException();
+        if (city.getCoordinates().getX() <= -724 || city.getCoordinates().getY() <= -989 || city.getPopulation() <= 0 ||
+                city.getArea() <= 0 || city.getGovernor().getAge() != null && city.getGovernor().getAge() <= 0)
+            throw new NumberFormatException();
     }
 
     public HashSet<Integer> getIdSet() {
@@ -50,7 +45,7 @@ public class CreationPriorityQueue {
     }
 
     public Integer generateId() throws TooMuchElementsException {
-        Integer id;
+        int id;
         int count = 0;
         TooMuchElementsException e = new TooMuchElementsException();
         if (Collections.max(idSet) == Integer.MAX_VALUE) {
@@ -67,12 +62,7 @@ public class CreationPriorityQueue {
         return id;
     }
 
-    private PriorityQueue<City> priorityQueue = new PriorityQueue<>(10, new Comparator<City>() {
-        public int compare(City c1, City c2) {
-            return c2.getArea() - c1.getArea();
-        }
-    }
-    );
+    private final PriorityQueue<City> priorityQueue = new PriorityQueue<>(10, (c1, c2) -> c2.getArea() - c1.getArea());
 
     public String getFilePath() {
         return filePath;
@@ -94,7 +84,7 @@ public class CreationPriorityQueue {
         return priorityQueue.poll();
     }
 
-    public String makeQueue() throws ParseException, WrongValuesException {
+    public String makeQueue() throws ParseException, NumberFormatException {
         creationDate = LocalDate.now();
         Parser parser = new Parser(this);
         parser.parseCSV(lines);

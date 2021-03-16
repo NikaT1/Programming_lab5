@@ -17,9 +17,19 @@ public class GroupCountingByMetersAboveSeaLevel extends Commands {
         super("group_counting_by_meters_above_sea_level", "сгруппировать элементы коллекции по значению поля metersAboveSeaLevel, вывести количество элементов в каждой группе");
     }
 
-    private PriorityQueue<City> dop = new PriorityQueue<City>(10, new Comparator<City>() {
+    private final PriorityQueue<City> dop = new PriorityQueue<>(10, new Comparator<City>() {
         public int compare(City c1, City c2) {
-            return (int) (c2.getMetersAboveSeaLevel() - c1.getMetersAboveSeaLevel());
+            if (c2.getMetersAboveSeaLevel()!=null && c1.getMetersAboveSeaLevel()!=null) {
+                if (c2.getMetersAboveSeaLevel()<c1.getMetersAboveSeaLevel()) {
+                    return -1;
+                } else if (c2.getMetersAboveSeaLevel()<c1.getMetersAboveSeaLevel()) {
+                    return 1;
+                } else return -1;
+            } else if (c2.getMetersAboveSeaLevel()==null && c1.getMetersAboveSeaLevel()!=null) {
+                return -1;
+            } else if (c2.getMetersAboveSeaLevel()!=null && c1.getMetersAboveSeaLevel()==null) {
+                return 1;
+            } else return -1;
         }
     });
 
@@ -31,13 +41,18 @@ public class GroupCountingByMetersAboveSeaLevel extends Commands {
                 dop.add(city);
             }
             City city = dop.poll();
-            Long meters = city.getMetersAboveSeaLevel();
+            Long meters = null;
+            if (city != null) {
+                meters = city.getMetersAboveSeaLevel();
+            }
             inputAndOutput.output("Группа " + meters + " (м):");
-            inputAndOutput.output(city.toString());
+            if (city != null) {
+                inputAndOutput.output(city.toString());
+            } else inputAndOutput.output(null);
             priorityQueue.addToQueue(city);
             while (!dop.isEmpty()) {
                 city = dop.poll();
-                if (meters != city.getMetersAboveSeaLevel()) {
+                if (meters != null && !meters.equals(city.getMetersAboveSeaLevel()) || meters == null && city.getMetersAboveSeaLevel()!=null) {
                     meters = city.getMetersAboveSeaLevel();
                     inputAndOutput.output("Группа " + meters + " (м):");
                 }
