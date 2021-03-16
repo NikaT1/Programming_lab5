@@ -18,6 +18,7 @@ import java.util.Scanner;
 public class ExecuteScript extends Commands {
 
     private final HashSet<String> paths;
+    private boolean recursion;
 
     public ExecuteScript() {
         super("execute_script file_name", "считать и исполнить скрипт из указанного файла. В скрипте содержатся команды в таком же виде, в котором их вводит пользователь в интерактивном режиме.");
@@ -27,9 +28,10 @@ public class ExecuteScript extends Commands {
     public void doCommand(InputAndOutput inputAndOutput, CommandsControl commandsControl, CreationPriorityQueue priorityQueue) {
         try {
             if (!paths.add(inputAndOutput.getArgument())) {
-                inputAndOutput.output("Выявлена рекурсия! Выполнение команды остановлено");
+                inputAndOutput.output("Выявлена рекурсия! Команда execute_script, вызывающая рекурсию, не выполнена");
             } else {
-                FileInputStream fileInputStream = new FileInputStream(inputAndOutput.getArgument());
+                String path = inputAndOutput.getArgument();
+                FileInputStream fileInputStream = new FileInputStream(path);
                 BufferedInputStream file = new BufferedInputStream(fileInputStream);
                 Scanner scanner = new Scanner(file);
                 Scanner primaryScanner = inputAndOutput.getScanner();
@@ -37,8 +39,7 @@ public class ExecuteScript extends Commands {
                 inputAndOutput.setScanner(scanner);
                 UserInput userInput = new UserInput(inputAndOutput, commandsControl, priorityQueue, false);
                 userInput.startInput();
-                inputAndOutput.output("Скрипт из файла " + inputAndOutput.getArgument() + " успешно исполнен");
-                paths.clear();
+                paths.remove(path);
                 inputAndOutput.setScanner(primaryScanner);
                 inputAndOutput.setPrintMessages(true);
             }

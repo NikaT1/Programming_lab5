@@ -5,6 +5,8 @@ import collection.CreationPriorityQueue;
 import IOutils.InputAndOutput;
 import exceptions.TooMuchElementsException;
 
+import java.util.NoSuchElementException;
+
 /**
  * Класс для команды add, которая добавляет новый элемент в коллекцию.
  */
@@ -22,6 +24,8 @@ public class Add extends Commands {
             inputAndOutput.output("В коллекцию добавлен новый элемент: " + city.toString());
         } catch (TooMuchElementsException e) {
             inputAndOutput.output("Ошибка: в коллекции слишком много элементов; объект коллекции не создан");
+        } catch (NoSuchElementException e) {
+            inputAndOutput.output("В скрипте не указаны значения для создания элемента коллекции. Команда add не выполнена");
         }
     }
 }

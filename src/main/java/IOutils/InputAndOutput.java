@@ -10,6 +10,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 /**
@@ -221,7 +222,7 @@ public class InputAndOutput {
         return new Human(age);
     }
 
-    public City readCity() throws NumberFormatException {
+    public City readCity() throws NumberFormatException, NoSuchElementException {
         City city = new City();
         city.setName(readName());
         city.setCoordinates(readCoordinates());
