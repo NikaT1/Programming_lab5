@@ -7,9 +7,14 @@ import java.util.HashMap;
  */
 
 public class CommandsControl {
+    /**
+     * Поле, использующееся для хранения объектов команд.
+     */
     private final HashMap<TypeOfCommands, Commands> commands = new HashMap<>();
 
-    {
+    /**
+     * Блок инициализации, в котором создаются и сохраняются объекты команд.
+     */ {
         commands.put(TypeOfCommands.HELP, new Help());
         commands.put(TypeOfCommands.SHOW, new Show());
         commands.put(TypeOfCommands.INFO, new Info());
@@ -28,6 +33,11 @@ public class CommandsControl {
         commands.put(TypeOfCommands.PRINT_ASCENDING, new PrintAscending());
     }
 
+    /**
+     * Метод, возвращающий карту команд.
+     *
+     * @return карту команд.
+     */
     public HashMap<TypeOfCommands, Commands> getCommands() {
         return commands;
     }

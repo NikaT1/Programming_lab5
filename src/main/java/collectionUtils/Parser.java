@@ -20,12 +20,22 @@ import java.util.Scanner;
  */
 
 public class Parser implements ParserInterface {
-    private final CreationPriorityQueue priorityQueue;
+    private final PriorityQueueStorage priorityQueue;
 
-    public Parser(CreationPriorityQueue priorityQueue) {
+    /**
+     * Конструктор.
+     *
+     * @param priorityQueue объект класса, в котором будет хранится коллекция.
+     */
+    public Parser(PriorityQueueStorage priorityQueue) {
         this.priorityQueue = priorityQueue;
     }
 
+    /**
+     * Метод, осуществляющий парсинг файла.
+     *
+     * @param lines входящий поток данных из файла.
+     */
     public void parseFile(InputStreamReader lines) throws ParseException, NumberFormatException {
         Scanner scanner = new Scanner(lines);
         String[] nextLine;
@@ -60,8 +70,8 @@ public class Parser implements ParserInterface {
             if (!nextLine[fields.get("age")].equals("")) {
                 city.setGovernor(new Human(Integer.parseInt(nextLine[fields.get("age")])));
             } else city.setGovernor(new Human(null));
-            priorityQueue.checkCity(city);
-            priorityQueue.addToQueue(city);
+            priorityQueue.checkElement(city);
+            priorityQueue.addToCollection(city);
         }
     }
 }

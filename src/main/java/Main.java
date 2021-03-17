@@ -1,6 +1,8 @@
+import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.UnsupportedEncodingException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -8,7 +10,8 @@ import java.util.regex.Pattern;
 
 import IOutils.InputAndOutput;
 import IOutils.UserInput;
-import collectionUtils.CreationPriorityQueue;
+import collectionUtils.Parser;
+import collectionUtils.PriorityQueueStorage;
 import commands.CommandsControl;
 
 /**
@@ -18,6 +21,11 @@ import commands.CommandsControl;
  */
 
 public class Main {
+    /**
+     * Главный метод.
+     *
+     * @param args путь к файлу с коллекцией.
+     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         InputAndOutput inputAndOutput = new InputAndOutput(scanner, true);
@@ -37,14 +45,14 @@ public class Main {
             inputAndOutput.output("Файл не существует или не хватает прав на чтение");
             System.exit(1);
         }
-        CreationPriorityQueue priorityQueue = null;
+        PriorityQueueStorage priorityQueue = null;
+        Parser parser;
         try {
-            priorityQueue = new CreationPriorityQueue(fileInputStream, args[0]);
-        } catch (UnsupportedEncodingException e) {
-            inputAndOutput.output("Данные в файла невозможно представить в нужной кодировке");
-        }
-        try {
-            if (priorityQueue!=null) System.out.println(priorityQueue.makeQueue());
+            priorityQueue = new PriorityQueueStorage(args[0]);
+            parser = new Parser(priorityQueue);
+            BufferedInputStream file = new BufferedInputStream(fileInputStream);
+            InputStreamReader lines = new InputStreamReader(file, StandardCharsets.UTF_8);
+            parser.parseFile(lines);
         } catch (NumberFormatException e) {
             inputAndOutput.output("Значения полей объектов введены неверно");
             System.exit(1);

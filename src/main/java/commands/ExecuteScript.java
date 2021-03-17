@@ -1,8 +1,8 @@
 package commands;
 
-import collectionUtils.CreationPriorityQueue;
 import IOutils.InputAndOutput;
 import IOutils.UserInput;
+import collectionUtils.PriorityQueueStorage;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
@@ -15,15 +15,27 @@ import java.util.Scanner;
  */
 
 public class ExecuteScript extends Commands {
-
+    /**
+     * Поле, содержащее список файлов.
+     */
     private final HashSet<String> paths;
 
+    /**
+     * Конструктор, присваивающий имя и дополнительную информацию о команде.
+     */
     public ExecuteScript() {
         super("execute_script file_name", "считать и исполнить скрипт из указанного файла. В скрипте содержатся команды в таком же виде, в котором их вводит пользователь в интерактивном режиме.");
         paths = new HashSet<>();
     }
 
-    public void doCommand(InputAndOutput inputAndOutput, CommandsControl commandsControl, CreationPriorityQueue priorityQueue) {
+    /**
+     * Метод, исполняющий команду.
+     *
+     * @param inputAndOutput  объект, через который производится ввод/вывод.
+     * @param commandsControl объект, содержащий объекты доступных команд.
+     * @param priorityQueue   хранимая коллекция.
+     */
+    public void doCommand(InputAndOutput inputAndOutput, CommandsControl commandsControl, PriorityQueueStorage priorityQueue) {
         try {
             if (!paths.add(inputAndOutput.getArgument())) {
                 inputAndOutput.output("Выявлена рекурсия! Команда execute_script, вызывающая рекурсию, не выполнена");

@@ -1,8 +1,8 @@
 package commands;
 
 import collection.City;
-import collectionUtils.CreationPriorityQueue;
 import IOutils.InputAndOutput;
+import collectionUtils.PriorityQueueStorage;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -13,17 +13,30 @@ import java.util.PriorityQueue;
  */
 
 public class CommandSave extends Commands {
+    /**
+     * Поле, использующееся для временного хранения коллекции.
+     */
     private final PriorityQueue<City> dop = new PriorityQueue<>(10, (c1, c2) -> (c2.getArea() - c1.getArea()));
 
+    /**
+     * Конструктор, присваивающий имя и дополнительную информацию о команде.
+     */
     public CommandSave() {
         super("save", "сохранить коллекцию в файл");
     }
 
-    public void doCommand(InputAndOutput inputAndOutput, CommandsControl commandsControl, CreationPriorityQueue priorityQueue) {
+    /**
+     * Метод, исполняющий команду.
+     *
+     * @param inputAndOutput  объект, через который производится ввод/вывод.
+     * @param commandsControl объект, содержащий объекты доступных команд.
+     * @param priorityQueue   хранимая коллекция.
+     */
+    public void doCommand(InputAndOutput inputAndOutput, CommandsControl commandsControl, PriorityQueueStorage priorityQueue) {
         try {
             PrintWriter printWriter = new PrintWriter(priorityQueue.getFilePath());
             printWriter.write("id,name,x,y,creationDate,area,population,metersAboveSeaLevel,establishmentDate,agglomeration,climate,age" + "\n");
-            while (!priorityQueue.getPriorityQueue().isEmpty()) {
+            while (!priorityQueue.getCollection().isEmpty()) {
                 City city = priorityQueue.pollFromQueue();
                 printWriter.write(city.getId() + ",");
                 printWriter.write(city.getName() + ",");
@@ -46,7 +59,7 @@ public class CommandSave extends Commands {
             }
             printWriter.flush();
             while (!dop.isEmpty()) {
-                priorityQueue.addToQueue(dop.poll());
+                priorityQueue.addToCollection(dop.poll());
             }
             inputAndOutput.output("Коллекция успешно сохранена");
         } catch (FileNotFoundException e) {

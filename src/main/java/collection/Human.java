@@ -5,8 +5,16 @@ package collection;
  */
 
 public class Human {
-    private Integer age; //Значение поля должно быть больше 0
+    /**
+     * Возраст человека. Значение поля должно быть больше 0.
+     */
+    private Integer age;
 
+    /**
+     * Конструктор.
+     *
+     * @param age возраст человека.
+     */
     public Human(Integer age) {
         this.age = age;
     }

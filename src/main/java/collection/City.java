@@ -10,17 +10,50 @@ import java.util.Date;
  */
 
 public class City {
-    private Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
-    private String name; //Поле не может быть null, Строка не может быть пустой
-    private Coordinates coordinates; //Поле не может быть null
-    private LocalDate creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
-    private int area; //Значение поля должно быть больше 0
-    private long population; //Значение поля должно быть больше 0
+    /**
+     * Id города. Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически.
+     */
+    private Integer id;
+    /**
+     * Название города. Поле не может быть null, Строка не может быть пустой.
+     */
+    private String name;
+    /**
+     * Координаты города. Поле не может быть null.
+     */
+    private Coordinates coordinates;
+    /**
+     * Дата создания объекта. Поле не может быть null, Значение этого поля должно генерироваться автоматически Поле не может быть null.
+     */
+    private LocalDate creationDate;
+    /**
+     * Размер территории города. Значение поля должно быть больше 0.
+     */
+    private int area = 0;
+    /**
+     * Численность населения города. Значение поля должно быть больше 0.
+     */
+    private long population;
+    /**
+     * Количество метров над уровнем моря.
+     */
     private Long metersAboveSeaLevel;
+    /**
+     * Дата основания города.
+     */
     private Date establishmentDate;
+    /**
+     * Размер агломерации.
+     */
     private Integer agglomeration;
-    private Climate climate; //Поле не может быть null
-    private Human governor; //Поле не может быть null
+    /**
+     * Тип климата. Поле не может быть null.
+     */
+    private Climate climate;
+    /**
+     * Губернатор города. Поле не может быть null.
+     */
+    private Human governor;
 
     public void setName(String name) {
         this.name = name;

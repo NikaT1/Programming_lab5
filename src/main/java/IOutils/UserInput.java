@@ -2,23 +2,45 @@ package IOutils;
 
 import java.util.Scanner;
 
-import collectionUtils.CreationPriorityQueue;
+import collectionUtils.PriorityQueueStorage;
 import commands.CommandsControl;
 import commands.TypeOfCommands;
-import exceptions.NoSuchCommandException;
 
 /**
  * Класс для распознавания введенных комманд.
  */
 
 public class UserInput {
+    /**
+     * Ввод пользователя.
+     */
     private final Scanner input;
+    /**
+     * Флаг, отвечающий за вид взаимодействия с пользователем.
+     */
     private final boolean printMessages;
+    /**
+     * Поле для доступа к объектам команд.
+     */
     private final CommandsControl commandsControl;
-    private final CreationPriorityQueue priorityQueue;
+    /**
+     * Поле для доступа к элементам коллекции.
+     */
+    private final PriorityQueueStorage priorityQueue;
+    /**
+     * Поле, хранящее объект, отвечающий за ввод/вывод.
+     */
     private final InputAndOutput inputAndOutput;
 
-    public UserInput(InputAndOutput inputAndOutput, CommandsControl commandsControl, CreationPriorityQueue priorityQueue, boolean printMessages) {
+    /**
+     * Конструктор.
+     *
+     * @param inputAndOutput  объект, через который производится ввод/вывод.
+     * @param commandsControl объект, содержащий объекты доступных команд.
+     * @param priorityQueue   хранимая коллекция.
+     * @param printMessages   флаг, отвечающий за вид взаимодействия с пользователем.
+     */
+    public UserInput(InputAndOutput inputAndOutput, CommandsControl commandsControl, PriorityQueueStorage priorityQueue, boolean printMessages) {
         this.commandsControl = commandsControl;
         this.input = inputAndOutput.getScanner();
         this.priorityQueue = priorityQueue;
@@ -26,8 +48,10 @@ public class UserInput {
         this.printMessages = printMessages;
     }
 
-    public void startInput() throws NoSuchCommandException {
-        NoSuchCommandException ex = new NoSuchCommandException();
+    /**
+     * Метод, отвечающий за распознавание команд и их выполнение.
+     */
+    public void startInput() {
         if (printMessages) inputAndOutput.output("Введите команду: ");
         while (input.hasNextLine()) {
             String[] s = input.nextLine().split(" ");
@@ -85,11 +109,11 @@ public class UserInput {
                         commandsControl.getCommands().get(TypeOfCommands.EXECUTE_SCRIPT).doCommand(inputAndOutput, commandsControl, priorityQueue);
                         break;
                     default:
-                        throw ex;
+                        throw new NullPointerException();
                 }
             } catch (ArrayIndexOutOfBoundsException e) {
                 inputAndOutput.output("Вы ввели не все аргументы команды");
-            } catch (NoSuchCommandException e) {
+            } catch (NullPointerException e) {
                 inputAndOutput.output("Данной команды не существует (узнать о доступных командах можно с помощью команды help)");
             } catch (Exception e) {
                 inputAndOutput.output("При выполнении команды возникла ошибка");

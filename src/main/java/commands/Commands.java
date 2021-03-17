@@ -1,7 +1,7 @@
 package commands;
 
-import collectionUtils.CreationPriorityQueue;
 import IOutils.InputAndOutput;
+import collectionUtils.PriorityQueueStorage;
 
 /**
  * Абстрактный класс для всех комманд.
@@ -16,8 +16,7 @@ public abstract class Commands {
         this.someInformation = someInformation;
     }
 
-    public void doCommand(InputAndOutput inputAndOutput, CommandsControl commandsControl, CreationPriorityQueue priorityQueue) throws Exception {
-    }
+    public abstract void doCommand(InputAndOutput inputAndOutput, CommandsControl commandsControl, PriorityQueueStorage priorityQueue);
 
     public String getName() {
         return name;

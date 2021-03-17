@@ -1,8 +1,8 @@
 package commands;
 
 import collection.City;
-import collectionUtils.CreationPriorityQueue;
 import IOutils.InputAndOutput;
+import collectionUtils.PriorityQueueStorage;
 
 import java.util.PriorityQueue;
 
@@ -11,17 +11,30 @@ import java.util.PriorityQueue;
  */
 
 public class RemoveById extends Commands {
+    /**
+     * Поле, использующееся для временного хранения коллекции.
+     */
+    private final PriorityQueue<City> dop = new PriorityQueue<>(10, (c1, c2) -> (c2.getArea() - c1.getArea()));
+
+    /**
+     * Конструктор, присваивающий имя и дополнительную информацию о команде.
+     */
     public RemoveById() {
         super("remove_by_id id", "удалить элемент из коллекции по его id");
     }
 
-    private final PriorityQueue<City> dop = new PriorityQueue<>(10, (c1, c2) -> (c2.getArea() - c1.getArea()));
-
-    public void doCommand(InputAndOutput inputAndOutput, CommandsControl commandsControl, CreationPriorityQueue priorityQueue) {
+    /**
+     * Метод, исполняющий команду.
+     *
+     * @param inputAndOutput  объект, через который производится ввод/вывод.
+     * @param commandsControl объект, содержащий объекты доступных команд.
+     * @param priorityQueue   хранимая коллекция.
+     */
+    public void doCommand(InputAndOutput inputAndOutput, CommandsControl commandsControl, PriorityQueueStorage priorityQueue) {
         try {
             int id = Integer.parseInt(inputAndOutput.getArgument());
             boolean flag = false;
-            while (!priorityQueue.getPriorityQueue().isEmpty()) {
+            while (!priorityQueue.getCollection().isEmpty()) {
                 City city = priorityQueue.pollFromQueue();
                 if (city.getId() == id) {
                     flag = true;
@@ -31,7 +44,7 @@ public class RemoveById extends Commands {
             else inputAndOutput.output("Элемент с id " + id + " не существует");
             while (!dop.isEmpty()) {
                 City city = dop.poll();
-                priorityQueue.addToQueue(city);
+                priorityQueue.addToCollection(city);
             }
         } catch (NumberFormatException e) {
             inputAndOutput.output("неправильный формат id");
