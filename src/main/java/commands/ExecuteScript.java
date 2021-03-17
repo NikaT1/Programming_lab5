@@ -49,7 +49,7 @@ public class ExecuteScript extends Command {
                 boolean printMessages = inputAndOutput.getPrintMessages();
                 inputAndOutput.setPrintMessages(false);
                 inputAndOutput.setScanner(scanner);
-                UserInput userInput = new UserInput(inputAndOutput, commandsControl, priorityQueue, false);
+                UserInput userInput = new UserInput(inputAndOutput, commandsControl, priorityQueue);
                 userInput.input();
                 paths.remove(path);
                 inputAndOutput.setScanner(primaryScanner);

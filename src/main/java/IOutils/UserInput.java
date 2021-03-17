@@ -17,10 +17,6 @@ public class UserInput {
      */
     private final Scanner input;
     /**
-     * Флаг, отвечающий за вид взаимодействия с пользователем.
-     */
-    private final boolean printMessages;
-    /**
      * Поле для доступа к объектам команд.
      */
     private final CommandsControl commandsControl;
@@ -39,14 +35,12 @@ public class UserInput {
      * @param inputAndOutput  объект, через который производится ввод/вывод.
      * @param commandsControl объект, содержащий объекты доступных команд.
      * @param priorityQueue   хранимая коллекция.
-     * @param printMessages   флаг, отвечающий за вид взаимодействия с пользователем.
      */
-    public UserInput(InputAndOutput inputAndOutput, CommandsControl commandsControl, PriorityQueueStorage priorityQueue, boolean printMessages) {
+    public UserInput(InputAndOutput inputAndOutput, CommandsControl commandsControl, PriorityQueueStorage priorityQueue) {
         this.commandsControl = commandsControl;
         this.input = inputAndOutput.getScanner();
         this.priorityQueue = priorityQueue;
         this.inputAndOutput = inputAndOutput;
-        this.printMessages = printMessages;
     }
 
     /**

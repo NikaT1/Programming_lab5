@@ -70,7 +70,7 @@ public class Main {
             System.exit(1);
         }
         CommandsControl commandsControl = new CommandsControl();
-        UserInput userInput = new UserInput(inputAndOutput, commandsControl, priorityQueue, true);
+        UserInput userInput = new UserInput(inputAndOutput, commandsControl, priorityQueue);
         do {
             try {
                 inputAndOutput.output("Введите команду: ");
