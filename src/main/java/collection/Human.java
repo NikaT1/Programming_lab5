@@ -8,7 +8,7 @@ public class Human {
     /**
      * Возраст человека. Значение поля должно быть больше 0.
      */
-    private Integer age;
+    private final Integer age;
 
     /**
      * Конструктор.
@@ -19,14 +19,20 @@ public class Human {
         this.age = age;
     }
 
+    /**
+     * Метод, возвращающий значение возраста.
+     *
+     * @return возраст.
+     */
     public Integer getAge() {
         return age;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
+    /**
+     * Метод, возвращающий объект в строковом представлении.
+     *
+     * @return объект в строковом представлении.
+     */
     public String toString() {
         return "возраст человека: " + age;
     }

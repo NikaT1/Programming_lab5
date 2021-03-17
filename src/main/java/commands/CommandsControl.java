@@ -12,9 +12,7 @@ public class CommandsControl {
      */
     private final HashMap<TypeOfCommands, Command> commands = new HashMap<>();
 
-    /**
-     * Блок инициализации, в котором создаются и сохраняются объекты команд.
-     */ {
+    {
         commands.put(TypeOfCommands.HELP, new Help());
         commands.put(TypeOfCommands.SHOW, new Show());
         commands.put(TypeOfCommands.INFO, new Info());

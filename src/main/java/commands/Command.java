@@ -21,7 +21,7 @@ public abstract class Command {
      * Конструктор.
      *
      * @param name название команды.
-     * @param name дополнительная информация о команде.
+     * @param someInformation дополнительная информация о команде.
      */
     public Command(String name, String someInformation) {
         this.name = name;
@@ -37,15 +37,27 @@ public abstract class Command {
      * @throws Exception в случае ошибки при выполнении команды.
      */
     public abstract void doCommand(InputAndOutput inputAndOutput, CommandsControl commandsControl, PriorityQueueStorage priorityQueue) throws Exception;
-
+    /**
+     * Метод, возвращающий название команды.
+     *
+     * @return название команды.
+     */
     public String getName() {
         return name;
     }
-
+    /**
+     * Метод, возвращающий информацию о команде.
+     *
+     * @return информация о команде.
+     */
     public String getSomeInformation() {
         return someInformation;
     }
-
+    /**
+     * Метод, возвращающий объект в строковом представлении.
+     *
+     * @return объект в строковом представлении.
+     */
     public String toString() {
         return getName() + " : " + getSomeInformation();
     }

@@ -71,7 +71,7 @@ public class Main {
         }
         CommandsControl commandsControl = new CommandsControl();
         UserInput userInput = new UserInput(inputAndOutput, commandsControl, priorityQueue);
-        do {
+        while (true) {
             try {
                 inputAndOutput.output("Введите команду: ");
                 userInput.input();
@@ -85,6 +85,6 @@ public class Main {
                 inputAndOutput.output("При выполнении команды возникла ошибка");
                 e.printStackTrace();
             }
-        } while (true);
+        }
     }
 }

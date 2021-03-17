@@ -25,14 +25,29 @@ public class Coordinates {
         this.y = y;
     }
 
+    /**
+     * Метод, возвращающий значение координаты х.
+     *
+     * @return координата х.
+     */
     public Float getX() {
         return x;
     }
 
+    /**
+     * Метод, возвращающий значение координаты у.
+     *
+     * @return координата у.
+     */
     public Integer getY() {
         return y;
     }
 
+    /**
+     * Метод, возвращающий объект в строковом представлении.
+     *
+     * @return объект в строковом представлении.
+     */
     public String toString() {
         return "координаты х: " + x + ", y: " + y;
     }
