@@ -10,7 +10,7 @@ public class CommandsControl {
     /**
      * Поле, использующееся для хранения объектов команд.
      */
-    private final HashMap<TypeOfCommands, Commands> commands = new HashMap<>();
+    private final HashMap<TypeOfCommands, Command> commands = new HashMap<>();
 
     /**
      * Блок инициализации, в котором создаются и сохраняются объекты команд.
@@ -38,7 +38,7 @@ public class CommandsControl {
      *
      * @return карту команд.
      */
-    public HashMap<TypeOfCommands, Commands> getCommands() {
+    public HashMap<TypeOfCommands, Command> getCommands() {
         return commands;
     }
 }

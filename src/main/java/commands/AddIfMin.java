@@ -12,7 +12,7 @@ import java.util.PriorityQueue;
  * элемента этой коллекции.
  */
 
-public class AddIfMin extends Commands {
+public class AddIfMin extends Command {
     /**
      * Поле, использующееся для временного хранения коллекции.
      */

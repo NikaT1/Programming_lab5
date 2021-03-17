@@ -7,7 +7,7 @@ import collectionUtils.PriorityQueueStorage;
  * Класс для команды remove_head, которая выводит и удаляет первый элемент из коллекции.
  */
 
-public class RemoveHead extends Commands {
+public class RemoveHead extends Command {
     /**
      * Конструктор, присваивающий имя и дополнительную информацию о команде.
      */

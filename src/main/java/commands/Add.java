@@ -11,7 +11,7 @@ import java.util.NoSuchElementException;
  * Класс для команды add, которая добавляет новый элемент в коллекцию.
  */
 
-public class Add extends Commands {
+public class Add extends Command {
     /**
      * Конструктор, присваивающий имя и дополнительную информацию о команде.
      */

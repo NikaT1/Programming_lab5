@@ -10,7 +10,7 @@ import java.util.PriorityQueue;
  * Класс для команды remove_by_id, которая удаляет элемент из коллекции по его id.
  */
 
-public class RemoveById extends Commands {
+public class RemoveById extends Command {
     /**
      * Поле, использующееся для временного хранения коллекции.
      */

@@ -10,7 +10,7 @@ import collectionUtils.PriorityQueueStorage;
  * Класс для команды show, которая выводит в стандартный поток вывода все элементы коллекции в строковом представлении.
  */
 
-public class Show extends Commands {
+public class Show extends Command {
     /**
      * Поле, использующееся для временного хранения коллекции.
      */

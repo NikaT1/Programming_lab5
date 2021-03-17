@@ -7,6 +7,7 @@ import collectionUtils.PriorityQueueStorage;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.security.InvalidAlgorithmParameterException;
 import java.util.HashSet;
 import java.util.Scanner;
 
@@ -14,7 +15,7 @@ import java.util.Scanner;
  * Класс для команды execute_script, которая считывает и исполняет скрипт из указанного файла.
  */
 
-public class ExecuteScript extends Commands {
+public class ExecuteScript extends Command {
     /**
      * Поле, содержащее список файлов.
      */
@@ -35,23 +36,24 @@ public class ExecuteScript extends Commands {
      * @param commandsControl объект, содержащий объекты доступных команд.
      * @param priorityQueue   хранимая коллекция.
      */
-    public void doCommand(InputAndOutput inputAndOutput, CommandsControl commandsControl, PriorityQueueStorage priorityQueue) {
+    public void doCommand(InputAndOutput inputAndOutput, CommandsControl commandsControl, PriorityQueueStorage priorityQueue) throws Exception {
         try {
             if (!paths.add(inputAndOutput.getArgument())) {
-                inputAndOutput.output("Выявлена рекурсия! Команда execute_script, вызывающая рекурсию, не выполнена");
+                throw new InvalidAlgorithmParameterException();
             } else {
                 String path = inputAndOutput.getArgument();
                 FileInputStream fileInputStream = new FileInputStream(path);
                 BufferedInputStream file = new BufferedInputStream(fileInputStream);
                 Scanner scanner = new Scanner(file);
                 Scanner primaryScanner = inputAndOutput.getScanner();
+                boolean printMessages = inputAndOutput.getPrintMessages();
                 inputAndOutput.setPrintMessages(false);
                 inputAndOutput.setScanner(scanner);
                 UserInput userInput = new UserInput(inputAndOutput, commandsControl, priorityQueue, false);
-                userInput.startInput();
+                userInput.input();
                 paths.remove(path);
                 inputAndOutput.setScanner(primaryScanner);
-                inputAndOutput.setPrintMessages(true);
+                inputAndOutput.setPrintMessages(printMessages);
             }
         } catch (FileNotFoundException e) {
             inputAndOutput.output("Файл не существует или не хватает прав на чтение файла");

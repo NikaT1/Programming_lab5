@@ -10,7 +10,7 @@ import java.util.PriorityQueue;
  * Класс для команды update, которая обновляет значение элемента коллекции по его id.
  */
 
-public class UpdateId extends Commands {
+public class UpdateId extends Command {
     /**
      * Поле, использующееся для временного хранения коллекции.
      */

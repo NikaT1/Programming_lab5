@@ -7,7 +7,7 @@ import collectionUtils.PriorityQueueStorage;
  * Класс для команды info, которая выводит в стандартный поток вывода информацию о коллекции.
  */
 
-public class Info extends Commands {
+public class Info extends Command {
     /**
      * Конструктор, присваивающий имя и дополнительную информацию о команде.
      */

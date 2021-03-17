@@ -376,9 +376,14 @@ public class InputAndOutput {
     /**
      * Метод, отвечающий за вывод строки на экран.
      *
+
      * @param s строка для вывода.
      */
     public void output(String s) {
         System.out.println(s);
+    }
+
+    public boolean getPrintMessages() {
+        return printMessages;
     }
 }

@@ -11,7 +11,7 @@ import java.util.PriorityQueue;
  * поля metersAboveSeaLevel и выводит количество элементов в каждой группе.
  */
 
-public class GroupCountingByMetersAboveSeaLevel extends Commands {
+public class GroupCountingByMetersAboveSeaLevel extends Command {
     /**
      * Поле, использующееся для временного хранения коллекции.
      */

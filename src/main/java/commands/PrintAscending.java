@@ -11,7 +11,7 @@ import java.util.PriorityQueue;
  * Класс для команды print_ascending, которая выводит элементы коллекции в порядке возрастания.
  */
 
-public class PrintAscending extends Commands {
+public class PrintAscending extends Command {
     /**
      * Поле, использующееся для временного хранения коллекции.
      */

@@ -7,7 +7,7 @@ import collectionUtils.PriorityQueueStorage;
  * Класс для команды clear, которая очищает коллекцию.
  */
 
-public class CommandClear extends Commands {
+public class CommandClear extends Command {
     /**
      * Конструктор, присваивающий имя и дополнительную информацию о команде.
      */

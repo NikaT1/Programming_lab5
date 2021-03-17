@@ -7,7 +7,7 @@ import collectionUtils.PriorityQueueStorage;
  * Класс для команды help, которая выводит справку по доступным коммандам.
  */
 
-public class Help extends Commands {
+public class Help extends Command {
     /**
      * Конструктор, присваивающий имя и дополнительную информацию о команде.
      */
@@ -24,7 +24,7 @@ public class Help extends Commands {
      */
     public void doCommand(InputAndOutput inputAndOutput, CommandsControl commandsControl, PriorityQueueStorage priorityQueue) {
         inputAndOutput.output("Доступные команды:");
-        for (Commands command : commandsControl.getCommands().values()) {
+        for (Command command : commandsControl.getCommands().values()) {
             inputAndOutput.output(command.toString());
         }
     }

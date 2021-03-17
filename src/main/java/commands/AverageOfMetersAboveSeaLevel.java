@@ -9,7 +9,7 @@ import collectionUtils.PriorityQueueStorage;
  * для всех элементов коллекции.
  */
 
-public class AverageOfMetersAboveSeaLevel extends Commands {
+public class AverageOfMetersAboveSeaLevel extends Command {
     /**
      * Конструктор, присваивающий имя и дополнительную информацию о команде.
      */

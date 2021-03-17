@@ -3,6 +3,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.security.InvalidAlgorithmParameterException;
 import java.text.ParseException;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -53,6 +54,7 @@ public class Main {
             BufferedInputStream file = new BufferedInputStream(fileInputStream);
             InputStreamReader lines = new InputStreamReader(file, StandardCharsets.UTF_8);
             parser.parseFile(lines);
+            inputAndOutput.output("Коллекция успешно создана!");
         } catch (NumberFormatException e) {
             inputAndOutput.output("Значения полей объектов введены неверно");
             System.exit(1);
@@ -69,6 +71,20 @@ public class Main {
         }
         CommandsControl commandsControl = new CommandsControl();
         UserInput userInput = new UserInput(inputAndOutput, commandsControl, priorityQueue, true);
-        userInput.startInput();
+        do {
+            try {
+                inputAndOutput.output("Введите команду: ");
+                userInput.input();
+            } catch (InvalidAlgorithmParameterException e) {
+                inputAndOutput.output("Выявлена рекурсия! Выполнение команды остановлено");
+            } catch (ArrayIndexOutOfBoundsException e) {
+                inputAndOutput.output("Вы ввели не все аргументы команды");
+            } catch (NullPointerException e) {
+                inputAndOutput.output("Данной команды не существует (узнать о доступных командах можно с помощью команды help)");
+            } catch (Exception e) {
+                inputAndOutput.output("При выполнении команды возникла ошибка");
+                e.printStackTrace();
+            }
+        } while (true);
     }
 }

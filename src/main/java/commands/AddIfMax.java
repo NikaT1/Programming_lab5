@@ -9,7 +9,7 @@ import collectionUtils.PriorityQueueStorage;
  * наибольшего элемента этой коллекции.
  */
 
-public class AddIfMax extends Commands {
+public class AddIfMax extends Command {
     /**
      * Конструктор, присваивающий имя и дополнительную информацию о команде.
      */
