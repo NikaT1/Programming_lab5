@@ -1,3 +1,2 @@
 /.idea/
-/target/classes/
-/target/generated-sources/
+/target/*
